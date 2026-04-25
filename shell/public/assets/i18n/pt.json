@@ -1,0 +1,36 @@
+{
+  "common": {
+    "dashboard": "Painel",
+    "logout": "Sair",
+    "theme": "Modo",
+    "add": "Nova Transação",
+    "seed": "Gerar Dados Demo",
+    "save": "Salvar Transação",
+    "cancel": "Cancelar"
+  },
+  "dashboard": {
+    "balance": "Saldo Total",
+    "income": "Receitas",
+    "expense": "Despesas",
+    "budget": "Progresso do Orçamento",
+    "spending": "Gastos por Categoria",
+    "recent": "Transações Recentes",
+    "noTransactions": "Nenhuma transação encontrada.",
+    "noBudgets": "Nenhum orçamento definido este mês."
+  },
+  "login": {
+    "subtitle": "Sua jornada financeira começa aqui.",
+    "email": "Endereço de E-mail",
+    "password": "Senha",
+    "button": "Entrar"
+  },
+  "form": {
+    "description": "Descrição",
+    "amount": "Valor",
+    "date": "Data",
+    "category": "Categoria",
+    "selectCat": "Selecione uma categoria",
+    "expense": "Despesa",
+    "income": "Receita"
+  }
+}

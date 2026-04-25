@@ -1,0 +1,98 @@
+<div class="dashboard" *transloco="let t">
+  <div class="summary-grid">
+    <div class="summary-card premium-card">
+      <span class="label">{{ t('dashboard.balance') }}</span>
+      <h2
+        [class.positive]="(totalBalance$ | async) ?? 0 >= 0"
+        [class.negative]="(totalBalance$ | async) ?? 0 < 0"
+      >
+        {{ totalBalance$ | async | currency }}
+      </h2>
+    </div>
+    <div class="summary-card premium-card">
+      <span class="label">{{ t('dashboard.income') }}</span>
+      <h2 class="positive">{{ incomeTotal$ | async | currency }}</h2>
+    </div>
+    <div class="summary-card premium-card">
+      <span class="label">{{ t('dashboard.expense') }}</span>
+      <h2 class="negative">{{ expenseTotal$ | async | currency }}</h2>
+    </div>
+  </div>
+
+  <div class="actions">
+    <lib-tracken-button (btnClick)="onSeed()" variant="outline" size="sm"
+      >{{ t('common.seed') }}</lib-tracken-button
+    >
+    <lib-tracken-button variant="primary" size="sm" (btnClick)="onAddTransaction()"
+      >+ {{ t('common.add') }}</lib-tracken-button
+    >
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="budget-section premium-card">
+      <h3>{{ t('dashboard.budget') }}</h3>
+      <div class="budget-list">
+        @for (b of budgets$ | async; track b.id) {
+          <div class="budget-item">
+            <div class="budget-info">
+              <span>{{ b.categoryName }}</span>
+              <span>{{ b.spent | currency }} / {{ b.limit | currency }}</span>
+            </div>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                [style.width.%]="(b.spent / b.limit) * 100"
+                [style.background]="(b.spent / b.limit) > 0.9 ? '#ef4444' : '#3b82f6'"
+              ></div>
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-state">{{ t('dashboard.noBudgets') }}</div>
+        }
+      </div>
+    </div>
+
+    <div class="chart-section premium-card">
+      <h3>{{ t('dashboard.spending') }}</h3>
+      @if ((categoryTotals$ | async)?.length) {
+        <app-spending-chart [data]="(categoryTotals$ | async) ?? []"></app-spending-chart>
+      } @else {
+        <div class="empty-state">{{ t('dashboard.noTransactions') }}</div>
+      }
+    </div>
+  </div>
+
+  <div class="transactions-section premium-card">
+    <h3>{{ t('dashboard.recent') }}</h3>
+    
+    @if (loaded$ | async) {
+      <div class="transaction-list">
+        @for (t of transactions$ | async; track t.id) {
+          <div class="transaction-item">
+            <div class="info">
+              <span class="description">{{ t.description }}</span>
+              <span class="category">{{ t.category }}</span>
+            </div>
+            <div
+              class="amount"
+              [class.income]="t.type === 'income'"
+              [class.expense]="t.type === 'expense'"
+            >
+              {{ t.type === 'income' ? '+' : '-' }} {{ t.amount | currency }}
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-state">
+            {{ t('dashboard.noTransactions') }}
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="skeleton-loading">Loading transactions...</div>
+    }
+  </div>
+
+  @if (showAddModal()) {
+    <app-add-transaction (closeModal)="showAddModal.set(false)"></app-add-transaction>
+  }
+</div>

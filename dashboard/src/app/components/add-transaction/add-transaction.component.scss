@@ -1,0 +1,121 @@
+@use 'mixins' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  outline: none;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem;
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  box-shadow: var(--shadow-premium);
+  animation: modal-appear 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+  h2 {
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: var(--text-main);
+  }
+}
+
+.type-toggle {
+  display: flex;
+  background: var(--bg-main);
+  padding: 0.3rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2.5rem;
+
+  button {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--text-dim);
+    background: transparent;
+    transition: $transition-base;
+    border: none;
+    cursor: pointer;
+
+    &.active {
+      background: var(--bg-card);
+      color: $primary;
+      box-shadow: var(--shadow-lg);
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: var(--bg-main);
+    border: 2px solid var(--glass-border);
+    border-radius: 0.875rem;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: $transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      background: var(--bg-card);
+    }
+    
+    &::placeholder {
+      color: var(--text-dim);
+    }
+
+    option {
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+@keyframes modal-appear {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

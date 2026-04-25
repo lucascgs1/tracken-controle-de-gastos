@@ -1,0 +1,18 @@
+<button
+  [type]="type()"
+  [class]="classes"
+  [disabled]="disabled() || loading()"
+  (click)="onClick()"
+>
+  @if (!loading()) {
+    <span class="btn-content">
+      <ng-content></ng-content>
+    </span>
+  }
+
+  @if (loading()) {
+    <div class="loader">
+      <div class="spinner"></div>
+    </div>
+  }
+</button>

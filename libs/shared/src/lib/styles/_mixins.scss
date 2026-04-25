@@ -1,0 +1,39 @@
+@use 'variables' as *;
+@forward 'variables';
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin glass-card {
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: 1px solid $glass-border;
+  border-radius: 1rem;
+  box-shadow: $shadow-lg;
+}
+
+@mixin premium-gradient {
+  background: linear-gradient(135deg, $primary, $primary-dark);
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: 640px) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: 1024px) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: 1280px) { @content; }
+  }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

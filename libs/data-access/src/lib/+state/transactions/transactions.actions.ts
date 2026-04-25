@@ -1,0 +1,15 @@
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { Transaction } from '../../models';
+
+export const TransactionsActions = createActionGroup({
+  source: 'Transactions',
+  events: {
+    'Load Transactions': emptyProps(),
+    'Load Transactions Success': props<{ transactions: Transaction[] }>(),
+    'Load Transactions Failure': props<{ error: string }>(),
+    'Add Transaction': props<{ transaction: Partial<Transaction> }>(),
+    'Add Transaction Success': props<{ transaction: Transaction }>(),
+    'Update Transaction': props<{ transaction: Transaction }>(),
+    'Delete Transaction': props<{ id: string }>(),
+  }
+});

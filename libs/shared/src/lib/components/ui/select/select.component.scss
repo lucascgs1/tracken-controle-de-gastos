@@ -1,0 +1,111 @@
+@use 'variables' as *;
+@use '../input/input.component.scss' as input;
+
+.custom-select {
+  position: relative;
+  width: 100%;
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  background: var(--bg-main);
+  border: 2px solid var(--glass-border);
+  border-radius: 1rem;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 4px rgba($primary, 0.1);
+  }
+
+  .placeholder {
+    color: var(--text-dim);
+  }
+
+  .chevron {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    transition: transform 0.3s ease;
+  }
+}
+
+.custom-select.open {
+  .select-trigger {
+    border-color: $primary;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    
+    .chevron {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.options-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: 2px solid $primary;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  z-index: 100;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: var(--shadow-premium);
+  animation: slide-down 0.2s ease;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+}
+
+.option-item {
+  padding: 0.8rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($primary, 0.1);
+    color: $primary;
+  }
+
+  &.selected {
+    background: rgba($primary, 0.15);
+    color: $primary;
+    font-weight: 700;
+  }
+
+  .check {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

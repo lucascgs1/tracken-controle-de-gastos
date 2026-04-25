@@ -1,0 +1,42 @@
+<div class="login-container" *transloco="let t">
+  <lib-tracken-card class="login-card">
+    <div class="logo-area">
+      <h1>Tracken</h1>
+      <p>{{ t('login.subtitle') }}</p>
+    </div>
+
+    <form [formGroup]="loginForm" (submit)="onSubmit(); $event.preventDefault()">
+      <lib-tracken-input
+        formControlName="email"
+        [label]="t('login.email')"
+        placeholder="admin@tracken.com"
+        [error]="loginForm.controls.email.touched && loginForm.controls.email.invalid ? 'Invalid email' : null"
+      ></lib-tracken-input>
+
+      <lib-tracken-input
+        formControlName="password"
+        type="password"
+        [label]="t('login.password')"
+        placeholder="••••••••"
+        [error]="loginForm.controls.password.touched && loginForm.controls.password.invalid ? 'Password too short' : null"
+      ></lib-tracken-input>
+
+      @if (error$ | async; as error) {
+        <div class="error-message">
+          {{ error }}
+        </div>
+      }
+
+      <div class="auth-actions">
+        <lib-tracken-button 
+          type="submit" 
+          variant="primary" 
+          [loading]="(loading$ | async) ?? false"
+          [disabled]="loginForm.invalid"
+        >
+          {{ t('login.button') }}
+        </lib-tracken-button>
+      </div>
+    </form>
+  </lib-tracken-card>
+</div>

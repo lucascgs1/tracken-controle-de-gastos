@@ -1,0 +1,58 @@
+@use 'variables' as *;
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+      padding: 1rem 1.4rem;
+      background: var(--bg-main);
+      border: 2px solid var(--glass-border);
+      border-radius: 1rem;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        background: var(--bg-card);
+        box-shadow: 0 0 0 4px rgba($primary, 0.1);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.has-error {
+    input {
+      border-color: rgba($danger, 0.5);
+      background: rgba($danger, 0.05);
+    }
+    .error-msg {
+      font-size: 0.75rem;
+      color: $danger;
+      font-weight: 600;
+    }
+  }
+}

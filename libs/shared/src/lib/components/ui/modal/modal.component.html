@@ -1,0 +1,16 @@
+<div class="modal-overlay" (click)="closeOnOverlay($event)">
+  <div class="modal-container premium-card" [style.max-width]="maxWidth()">
+    <div class="modal-header">
+      <h2>{{ title() }}</h2>
+      <button class="close-btn" (click)="close.emit()">×</button>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    @if (hasFooter()) {
+      <div class="modal-footer">
+        <ng-content select="[footer]"></ng-content>
+      </div>
+    }
+  </div>
+</div>

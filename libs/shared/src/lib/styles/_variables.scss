@@ -1,0 +1,50 @@
+// Typography (Shared)
+$font-family: 'Outfit', 'Inter', sans-serif;
+
+// Shared Colors (Always vivid)
+$primary: #8b5cf6;
+$primary-light: #a78bfa;
+$primary-dark: #6d28d9;
+
+$success: #2dd4bf;
+$warning: #fbbf24;
+$danger: #f472b6;
+$info: #38bdf8;
+
+// Shared Transitions & Shadows
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+:root {
+  // Light Theme Tokens (Modern & Soft)
+  --bg-main: #f8fafc;
+  --bg-body: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --text-main: #1e293b;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(12px);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --item-bg: white;
+  --item-border: #f1f5f9;
+}
+
+[data-theme='dark'] {
+  // Dark Theme Tokens (Deep & Relaxing)
+  --bg-main: #020617;
+  --bg-body: radial-gradient(circle at top left, #1e1b4b, #0f172a, #020617);
+  --bg-card: rgba(30, 41, 59, 0.4);
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-dim: #94a3b8;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(16px);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --item-bg: rgba(255, 255, 255, 0.02);
+  --item-border: transparent;
+}

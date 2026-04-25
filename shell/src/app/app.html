@@ -1,0 +1,35 @@
+<div class="shell-container" *transloco="let t">
+  <header>
+    <h1>Tracken</h1>
+    <nav>
+      <div class="lang-selector">
+        <button 
+          [class.active]="langService.getActiveLang() === 'en'" 
+          (click)="setLanguage('en')"
+        >EN</button>
+        <button 
+          [class.active]="langService.getActiveLang() === 'pt'" 
+          (click)="setLanguage('pt')"
+        >PT</button>
+      </div>
+
+      <lib-tracken-button (btnClick)="toggleTheme()" variant="secondary" size="sm">
+        {{ isDarkMode() ? '☀️' : '🌙' }} {{ t('common.theme') }}
+      </lib-tracken-button>
+
+      @if (user$ | async; as user) {
+        <lib-tracken-button variant="ghost" size="sm" routerLink="/dashboard">
+          {{ t('common.dashboard') }}
+        </lib-tracken-button>
+        
+        <lib-tracken-button variant="primary" size="sm" (btnClick)="onLogout()">
+          {{ t('common.logout') }}
+        </lib-tracken-button>
+      }
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
