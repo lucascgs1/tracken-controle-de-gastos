@@ -1,7 +1,7 @@
 <lib-tracken-modal
   *transloco="let t"
   [title]="t('common.add')"
-  (close)="closeModal.emit()"
+  (closed)="closeModal.emit()"
 >
   <form
     [formGroup]="transactionForm"

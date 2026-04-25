@@ -1,8 +1,8 @@
-<div class="modal-overlay" (click)="closeOnOverlay($event)">
+<div class="modal-overlay" (click)="closeOnOverlay($event)" (keydown.enter)="closeOnOverlay($event)" role="button" tabindex="-1">
   <div class="modal-container premium-card" [style.max-width]="maxWidth()">
     <div class="modal-header">
       <h2>{{ title() }}</h2>
-      <button class="close-btn" (click)="close.emit()">×</button>
+      <button class="close-btn" (click)="closed.emit()" aria-label="Close modal">×</button>
     </div>
     <div class="modal-body">
       <ng-content></ng-content>

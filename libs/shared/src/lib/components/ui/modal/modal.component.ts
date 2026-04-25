@@ -13,16 +13,16 @@ export class TrackenModal {
   title = input.required<string>();
   maxWidth = input<string>('500px');
   hasFooter = input(true);
-  close = output<void>();
+  closed = output<void>();
 
   @HostListener('document:keydown.escape')
   onEscape() {
-    this.close.emit();
+    this.closed.emit();
   }
 
   closeOnOverlay(event: MouseEvent) {
     if (event.target === event.currentTarget) {
-      this.close.emit();
+      this.closed.emit();
     }
   }
 }
