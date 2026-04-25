@@ -1,6 +1,7 @@
 {
   "common": {
     "dashboard": "Dashboard",
+    "settings": "Settings",
     "logout": "Logout",
     "theme": "Mode",
     "add": "New Transaction",

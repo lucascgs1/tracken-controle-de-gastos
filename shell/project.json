@@ -15,7 +15,6 @@
         "main": "shell/src/main.ts",
         "tsConfig": "shell/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "scriptType": "module",
         "assets": [
           {
             "glob": "**/*",

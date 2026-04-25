@@ -15,7 +15,6 @@
         "main": "dashboard/src/main.ts",
         "tsConfig": "dashboard/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "scriptType": "module",
         "assets": [
           {
             "glob": "**/*",

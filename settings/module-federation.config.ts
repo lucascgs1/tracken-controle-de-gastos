@@ -1,8 +1,10 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
-	name: 'shell',
-	remotes: ['dashboard', 'settings'],
+	name: 'settings',
+	exposes: {
+		'./Routes': 'settings/src/app/settings.routes.ts',
+	},
 	shared: (libraryName, sharedConfig) => {
 		if (
 			[
@@ -24,4 +26,7 @@ const config: ModuleFederationConfig = {
 	},
 };
 
+/**
+ * Nx requires a default export of the config to allow correct resolution of the module federation graph.
+ **/
 export default config;

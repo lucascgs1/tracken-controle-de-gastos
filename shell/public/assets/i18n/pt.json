@@ -1,6 +1,7 @@
 {
   "common": {
     "dashboard": "Painel",
+    "settings": "Configurações",
     "logout": "Sair",
     "theme": "Modo",
     "add": "Nova Transação",
