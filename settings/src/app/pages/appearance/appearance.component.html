@@ -1,0 +1,42 @@
+<ng-container *transloco="let t">
+	<lib-tracken-page-header
+		[title]="t('settings.preferences')"
+		[subtitle]="t('settings.appearanceDesc') || 'Customize a aparência da plataforma'"
+	>
+		<div actions>
+			<lib-tracken-button
+				variant="ghost"
+				size="sm"
+				routerLink="/settings"
+			>
+				Voltar
+			</lib-tracken-button>
+			<lib-tracken-button
+				variant="primary"
+				size="sm"
+				(btnClick)="onSave()"
+				[loading]="loading()"
+				[disabled]="form.invalid || loading()"
+			>
+				{{ t('common.save') }}
+			</lib-tracken-button>
+		</div>
+	</lib-tracken-page-header>
+
+	<lib-tracken-card
+		[title]="t('settings.customization') || 'Customização'"
+		[formGroup]="form"
+	>
+		<lib-tracken-select
+			[label]="t('common.theme')"
+			[options]="themeOptions"
+			formControlName="theme"
+		></lib-tracken-select>
+
+		<lib-tracken-select
+			[label]="t('settings.language')"
+			[options]="languageOptions"
+			formControlName="language"
+		></lib-tracken-select>
+	</lib-tracken-card>
+</ng-container>

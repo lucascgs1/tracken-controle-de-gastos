@@ -1,98 +1,154 @@
-<div class="dashboard" *transloco="let t">
-  <div class="summary-grid">
-    <div class="summary-card premium-card">
-      <span class="label">{{ t('dashboard.balance') }}</span>
-      <h2
-        [class.positive]="(totalBalance$ | async) ?? 0 >= 0"
-        [class.negative]="(totalBalance$ | async) ?? 0 < 0"
-      >
-        {{ totalBalance$ | async | currency }}
-      </h2>
-    </div>
-    <div class="summary-card premium-card">
-      <span class="label">{{ t('dashboard.income') }}</span>
-      <h2 class="positive">{{ incomeTotal$ | async | currency }}</h2>
-    </div>
-    <div class="summary-card premium-card">
-      <span class="label">{{ t('dashboard.expense') }}</span>
-      <h2 class="negative">{{ expenseTotal$ | async | currency }}</h2>
-    </div>
-  </div>
+<div
+	class="dashboard"
+	*transloco="let t"
+>
+	<div
+		class="summary-grid"
+		libTrackenAnimate="slide-up"
+	>
+		<lib-tracken-card class="summary-card">
+			<span class="label">{{ t('dashboard.balance') }}</span>
+			<h2
+				[class.positive]="totalBalance() >= 0"
+				[class.negative]="totalBalance() < 0"
+			>
+				{{ totalBalance() | currency }}
+			</h2>
+		</lib-tracken-card>
 
-  <div class="actions">
-    <lib-tracken-button (btnClick)="onSeed()" variant="outline" size="sm"
-      >{{ t('common.seed') }}</lib-tracken-button
-    >
-    <lib-tracken-button variant="primary" size="sm" (btnClick)="onAddTransaction()"
-      >+ {{ t('common.add') }}</lib-tracken-button
-    >
-  </div>
+		<lib-tracken-card class="summary-card">
+			<span class="label">{{ t('dashboard.income') }}</span>
+			<h2 class="positive">{{ incomeTotal() | currency }}</h2>
+		</lib-tracken-card>
 
-  <div class="dashboard-grid">
-    <div class="budget-section premium-card">
-      <h3>{{ t('dashboard.budget') }}</h3>
-      <div class="budget-list">
-        @for (b of budgets$ | async; track b.id) {
-          <div class="budget-item">
-            <div class="budget-info">
-              <span>{{ b.categoryName }}</span>
-              <span>{{ b.spent | currency }} / {{ b.limit | currency }}</span>
-            </div>
-            <div class="progress-bar">
-              <div
-                class="progress-fill"
-                [style.width.%]="(b.spent / b.limit) * 100"
-                [style.background]="(b.spent / b.limit) > 0.9 ? '#ef4444' : '#3b82f6'"
-              ></div>
-            </div>
-          </div>
-        } @empty {
-          <div class="empty-state">{{ t('dashboard.noBudgets') }}</div>
-        }
-      </div>
-    </div>
+		<lib-tracken-card class="summary-card">
+			<span class="label">{{ t('dashboard.expense') }}</span>
+			<h2 class="negative">{{ expenseTotal() | currency }}</h2>
+		</lib-tracken-card>
+	</div>
 
-    <div class="chart-section premium-card">
-      <h3>{{ t('dashboard.spending') }}</h3>
-      @if ((categoryTotals$ | async)?.length) {
-        <app-spending-chart [data]="(categoryTotals$ | async) ?? []"></app-spending-chart>
-      } @else {
-        <div class="empty-state">{{ t('dashboard.noTransactions') }}</div>
-      }
-    </div>
-  </div>
+	<div
+		class="actions"
+		libTrackenAnimate="fade-in"
+		[delay]="300"
+	>
+		<lib-tracken-button
+			(btnClick)="onSeed()"
+			variant="outline"
+			size="sm"
+		>
+			{{ t('common.seed') }}
+		</lib-tracken-button>
+		<lib-tracken-button
+			variant="primary"
+			size="sm"
+			(btnClick)="onAddTransaction()"
+		>
+			+ {{ t('common.add') }}
+		</lib-tracken-button>
+	</div>
 
-  <div class="transactions-section premium-card">
-    <h3>{{ t('dashboard.recent') }}</h3>
-    
-    @if (loaded$ | async) {
-      <div class="transaction-list">
-        @for (t of transactions$ | async; track t.id) {
-          <div class="transaction-item">
-            <div class="info">
-              <span class="description">{{ t.description }}</span>
-              <span class="category">{{ t.category }}</span>
-            </div>
-            <div
-              class="amount"
-              [class.income]="t.type === 'income'"
-              [class.expense]="t.type === 'expense'"
-            >
-              {{ t.type === 'income' ? '+' : '-' }} {{ t.amount | currency }}
-            </div>
-          </div>
-        } @empty {
-          <div class="empty-state">
-            {{ t('dashboard.noTransactions') }}
-          </div>
-        }
-      </div>
-    } @else {
-      <div class="skeleton-loading">Loading transactions...</div>
-    }
-  </div>
+	<div class="dashboard-grid">
+		<lib-tracken-card
+			class="budget-section"
+			[title]="t('dashboard.budget')"
+			libTrackenAnimate="slide-up"
+			[delay]="400"
+		>
+			<div class="budget-list">
+				<lib-tracken-empty-state
+					[title]="t('dashboard.noBudgets')"
+					[description]="t('dashboard.noBudgetsDesc')"
+					icon="account_balance_wallet"
+				></lib-tracken-empty-state>
+			</div>
+		</lib-tracken-card>
 
-  @if (showAddModal()) {
-    <app-add-transaction (closeModal)="showAddModal.set(false)"></app-add-transaction>
-  }
+		<lib-tracken-card
+			class="chart-section"
+			[title]="t('dashboard.spending')"
+			libTrackenAnimate="slide-up"
+			[delay]="500"
+		>
+			@if (categoryTotals().length) {
+				<app-spending-chart [data]="categoryTotals()"></app-spending-chart>
+			} @else if (!loaded()) {
+				<div style="display: flex; justify-content: center; align-items: center; height: 200px">
+					<lib-tracken-skeleton
+						variant="circle"
+						width="150px"
+						height="150px"
+					></lib-tracken-skeleton>
+				</div>
+			} @else {
+				<lib-tracken-empty-state
+					[title]="t('dashboard.noTransactions')"
+					[description]="t('dashboard.noTransactionsDesc')"
+					icon="pie_chart_outline"
+				></lib-tracken-empty-state>
+			}
+		</lib-tracken-card>
+	</div>
+
+	<lib-tracken-card
+		class="transactions-section"
+		[title]="t('dashboard.recent')"
+		libTrackenAnimate="slide-up"
+		[delay]="600"
+	>
+		@if (loaded()) {
+			<div class="transaction-list">
+				@for (item of transactions(); track item.id) {
+					<div class="transaction-item">
+						<div class="info">
+							<span class="description">{{ item.description }}</span>
+							<lib-tracken-badge variant="ghost">{{ item.category }}</lib-tracken-badge>
+						</div>
+						<div class="amount-wrapper">
+							<lib-tracken-badge [variant]="item.type === 'income' ? 'success' : 'danger'">
+								{{ item.type === 'income' ? '+' : '-' }} {{ item.amount | currency }}
+							</lib-tracken-badge>
+						</div>
+					</div>
+				} @empty {
+					<lib-tracken-empty-state
+						[title]="t('dashboard.noTransactions')"
+						[description]="t('dashboard.noTransactionsDesc')"
+						[actionLabel]="t('common.add')"
+						(actionClick)="onAddTransaction()"
+					></lib-tracken-empty-state>
+				}
+			</div>
+		} @else {
+			<div class="skeleton-list">
+				@for (i of [1, 2, 3, 4, 5]; track i) {
+					<div
+						class="skeleton-item"
+						style="margin-bottom: 1rem; display: flex; justify-content: space-between"
+					>
+						<div>
+							<lib-tracken-skeleton
+								width="150px"
+								height="1.2rem"
+								style="margin-bottom: 0.5rem"
+							></lib-tracken-skeleton>
+							<lib-tracken-skeleton
+								width="80px"
+								height="0.8rem"
+							></lib-tracken-skeleton>
+						</div>
+						<lib-tracken-skeleton
+							width="100px"
+							height="2rem"
+							variant="rounded"
+						></lib-tracken-skeleton>
+					</div>
+				}
+			</div>
+		}
+	</lib-tracken-card>
+
+	@if (showAddModal()) {
+		<app-add-transaction (closeModal)="showAddModal.set(false)"></app-add-transaction>
+	}
 </div>

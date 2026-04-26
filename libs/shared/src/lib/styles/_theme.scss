@@ -1,70 +1,83 @@
 @use 'variables' as *;
+@use 'animations';
+@use 'tokens';
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: $font-family;
-  background: var(--bg-body);
-  color: var(--text-main);
-  min-height: 100vh;
-  overflow-x: hidden;
-  line-height: 1.6;
-  transition: background 0.3s ease, color 0.3s ease;
+	font-family: $font-family;
+	background: var(--bg-body);
+	color: var(--text-main);
+	min-height: 100vh;
+	overflow-x: hidden;
+	line-height: 1.6;
+	transition:
+		background 0.3s ease,
+		color 0.3s ease;
 }
 
 .premium-card {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: 1.5rem;
-  box-shadow: var(--shadow-lg);
-  transition: $transition-base;
+	background: var(--glass-bg);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
+	border: 1px solid var(--glass-border);
+	border-radius: 1.5rem;
+	box-shadow: var(--shadow-lg);
+	transition: $transition-base;
 
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-premium);
-  }
+	&:hover {
+		border-color: rgba(255, 255, 255, 0.15);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-premium);
+	}
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--text-main);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	color: var(--text-main);
 }
 
 a {
-  color: $primary;
-  text-decoration: none;
-  transition: $transition-base;
-  &:hover {
-    color: $primary-dark;
-  }
+	color: $primary;
+	text-decoration: none;
+	transition: $transition-base;
+	&:hover {
+		color: $primary-dark;
+	}
 }
 
-.positive { color: $success !important; }
-.negative { color: $danger !important; }
+.positive {
+	color: $success !important;
+}
+.negative {
+	color: $danger !important;
+}
 
 ::-webkit-scrollbar {
-  width: 8px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-main);
+	background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-dim);
-  border-radius: 10px;
-  opacity: 0.3;
-  &:hover {
-    background: var(--text-muted);
-  }
+	background: var(--text-dim);
+	border-radius: 10px;
+	opacity: 0.3;
+	&:hover {
+		background: var(--text-muted);
+	}
 }

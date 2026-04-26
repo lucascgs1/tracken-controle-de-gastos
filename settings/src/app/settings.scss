@@ -1,0 +1,76 @@
+:host {
+	display: block;
+	min-height: 100%;
+
+	.menu-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+
+	.menu-card {
+		display: flex;
+		align-items: center;
+		padding: 1.5rem;
+		background: var(--bg-card); // Corrigido para variável global
+		backdrop-filter: var(--glass-blur);
+		border: 1px solid var(--glass-border); // Corrigido para variável global
+		border-radius: 1rem;
+		text-decoration: none;
+		transition: all 0.2s ease;
+		gap: 1.5rem;
+
+		&:hover {
+			border-color: var(--primary-color, #3b82f6);
+			transform: translateY(-2px);
+			box-shadow: var(--shadow-premium);
+
+			.arrow {
+				transform: translateX(5px);
+				color: var(--primary-color, #3b82f6);
+			}
+		}
+
+		.icon-wrapper {
+			width: 56px;
+			height: 56px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: var(--bg-main);
+			border-radius: 0.75rem;
+			color: var(--primary-color, #3b82f6);
+
+			.material-icons {
+				font-size: 24px;
+			}
+		}
+
+		.content {
+			flex: 1;
+
+			h3 {
+				margin: 0;
+				font-size: 1.125rem;
+				font-weight: 600;
+				color: var(--text-main);
+				transition: color 0.3s ease;
+			}
+
+			p {
+				margin: 0.25rem 0 0;
+				font-size: 0.875rem;
+				color: var(--text-muted);
+				transition: color 0.3s ease;
+			}
+		}
+
+		.arrow {
+			font-size: 1.5rem;
+			color: var(--text-dim);
+			transition: all 0.2s ease;
+		}
+	}
+}
+
+// Removido o seletor hardcoded .dark pois agora as variáveis CSS cuidam de tudo

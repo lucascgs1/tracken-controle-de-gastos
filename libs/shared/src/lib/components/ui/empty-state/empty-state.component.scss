@@ -1,0 +1,61 @@
+@use 'variables' as *;
+
+.empty-state-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 3rem 1.5rem;
+	width: 100%;
+	min-height: 250px;
+
+	.visual-wrapper {
+		margin-bottom: 1.5rem;
+
+		.illustration {
+			max-width: 200px;
+			height: auto;
+			filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+			animation: float 4s ease-in-out infinite;
+		}
+
+		.main-icon {
+			font-size: 4rem;
+			color: rgba(var(--text-main-rgb), 0.15);
+		}
+	}
+
+	.content {
+		max-width: 300px;
+		margin-bottom: 1.5rem;
+
+		.title {
+			font-size: 1.25rem;
+			font-weight: 600;
+			color: var(--text-main);
+			margin-bottom: 0.5rem;
+		}
+
+		.description {
+			font-size: 0.9rem;
+			color: var(--text-muted);
+			line-height: 1.5;
+		}
+	}
+
+	.actions {
+		display: flex;
+		gap: 1rem;
+	}
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}

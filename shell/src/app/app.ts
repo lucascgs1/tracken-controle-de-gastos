@@ -1,35 +1,69 @@
-import { Component, signal, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+	Component,
+	computed,
+	ChangeDetectionStrategy,
+	inject,
+	effect,
+	Renderer2,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TrackenButton, LanguageService, Language } from '@tracken/shared';
+import {
+	TrackenButton,
+	TrackenDropdown,
+	TrackenToastContainer,
+	LanguageService,
+	Language,
+	ThemeService,
+	InitialsPipe,
+} from '@tracken/shared';
 import { AuthFacade } from '@tracken/data-access';
-import { AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-  imports: [RouterModule, TrackenButton, AsyncPipe, TranslocoDirective],
-  selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	selector: 'app-root',
+	imports: [
+		CommonModule,
+		RouterModule,
+		TrackenButton,
+		TrackenDropdown,
+		TrackenToastContainer,
+		TranslocoDirective,
+		InitialsPipe,
+	],
+	templateUrl: './app.html',
+	styleUrl: './app.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  private authFacade = inject(AuthFacade);
-  public langService = inject(LanguageService);
-  
-  user$ = this.authFacade.user$;
-  isDarkMode = signal(false);
+	private authFacade = inject(AuthFacade);
+	public langService = inject(LanguageService);
+	public themeService = inject(ThemeService);
+	private renderer = inject(Renderer2);
 
-  toggleTheme() {
-    this.isDarkMode.update(v => !v);
-    const theme = this.isDarkMode() ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-  }
+	constructor() {
+		// Atualiza o atributo 'lang' do HTML dinamicamente para A11y/SEO
+		effect(() => {
+			const currentLang = this.langService.currentLang();
+			this.renderer.setAttribute(document.documentElement, 'lang', currentLang);
+		});
+	}
 
-  setLanguage(lang: Language) {
-    this.langService.setLanguage(lang);
-  }
+	// Reatividade fina com Signals
+	user = toSignal(this.authFacade.user$);
+	isDarkMode = computed(() => this.themeService.theme() === 'dark');
 
-  onLogout() {
-    this.authFacade.logout();
-  }
+	toggleTheme() {
+		this.themeService.toggleTheme();
+	}
+
+	setLanguage(lang: Language) {
+		this.langService.setLanguage(lang);
+	}
+
+	onLogout() {
+		this.authFacade.logout();
+	}
 }

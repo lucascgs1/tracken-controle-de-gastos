@@ -50,3 +50,8 @@ Thumbs.db
 .angular
 
 vitest.config.*.timestamp*
+
+# Generated environment files
+shell/src/environments/environment.ts
+dashboard/src/environments/environment.ts
+settings/src/environments/environment.ts

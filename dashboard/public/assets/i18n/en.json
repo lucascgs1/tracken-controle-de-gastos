@@ -1,36 +1,37 @@
 {
-  "common": {
-    "dashboard": "Dashboard",
-    "logout": "Logout",
-    "theme": "Mode",
-    "add": "New Transaction",
-    "seed": "Seed Demo Data",
-    "save": "Save Transaction",
-    "cancel": "Cancel"
-  },
-  "dashboard": {
-    "balance": "Total Balance",
-    "income": "Income",
-    "expense": "Expenses",
-    "budget": "Budget Progress",
-    "spending": "Spending by Category",
-    "recent": "Recent Transactions",
-    "noTransactions": "No transactions found.",
-    "noBudgets": "No budgets set for this month."
-  },
-  "login": {
-    "subtitle": "Your financial journey starts here.",
-    "email": "Email Address",
-    "password": "Password",
-    "button": "Sign In"
-  },
-  "form": {
-    "description": "Description",
-    "amount": "Amount",
-    "date": "Date",
-    "category": "Category",
-    "selectCat": "Select a category",
-    "expense": "Expense",
-    "income": "Income"
-  }
+	"common": {
+		"dashboard": "Dashboard",
+		"logout": "Logout",
+		"theme": "Mode",
+		"add": "New Transaction",
+		"seed": "Seed Demo Data",
+		"save": "Save Transaction",
+		"cancel": "Cancel"
+	},
+	"dashboard": {
+		"balance": "Total Balance",
+		"income": "Income",
+		"expense": "Expenses",
+		"budget": "Budget Progress",
+		"spending": "Spending by Category",
+		"recent": "Recent Transactions",
+		"noTransactions": "No transactions found.",
+		"noBudgets": "No budgets set for this month.",
+		"noBudgetsDesc": "Set up your monthly limits to stay on track."
+	},
+	"login": {
+		"subtitle": "Your financial journey starts here.",
+		"email": "Email Address",
+		"password": "Password",
+		"button": "Sign In"
+	},
+	"form": {
+		"description": "Description",
+		"amount": "Amount",
+		"date": "Date",
+		"category": "Category",
+		"selectCat": "Select a category",
+		"expense": "Expense",
+		"income": "Income"
+	}
 }

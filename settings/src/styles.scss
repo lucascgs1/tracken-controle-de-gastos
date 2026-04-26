@@ -1,0 +1,17 @@
+// Styles for settings sub-pages
+.form-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	margin-bottom: 0.5rem;
+
+	@media (max-width: 480px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+lib-tracken-input,
+lib-tracken-select {
+	display: block;
+	margin-bottom: 1.25rem;
+}

@@ -1,18 +1,22 @@
 <button
-  [type]="type()"
-  [class]="classes"
-  [disabled]="disabled() || loading()"
-  (click)="onClick()"
+	[class]="classes"
+	(click)="onClick()"
+	[disabled]="disabled()"
+	[type]="type()"
 >
-  @if (!loading()) {
-    <span class="btn-content">
-      <ng-content></ng-content>
-    </span>
-  }
+	@if (loading()) {
+		<span class="spinner"></span>
+	} @else {
+		@if (icon() && iconPosition() === 'left') {
+			<span class="material-icons button-icon">{{ icon() }}</span>
+		}
 
-  @if (loading()) {
-    <div class="loader">
-      <div class="spinner"></div>
-    </div>
-  }
+		<span class="button-content">
+			<ng-content></ng-content>
+		</span>
+
+		@if (icon() && iconPosition() === 'right') {
+			<span class="material-icons button-icon">{{ icon() }}</span>
+		}
+	}
 </button>

@@ -1,36 +1,84 @@
 {
-  "common": {
-    "dashboard": "Dashboard",
-    "logout": "Logout",
-    "theme": "Mode",
-    "add": "New Transaction",
-    "seed": "Seed Demo Data",
-    "save": "Save Transaction",
-    "cancel": "Cancel"
-  },
-  "dashboard": {
-    "balance": "Total Balance",
-    "income": "Income",
-    "expense": "Expenses",
-    "budget": "Budget Progress",
-    "spending": "Spending by Category",
-    "recent": "Recent Transactions",
-    "noTransactions": "No transactions found.",
-    "noBudgets": "No budgets set for this month."
-  },
-  "login": {
-    "subtitle": "Your financial journey starts here.",
-    "email": "Email Address",
-    "password": "Password",
-    "button": "Sign In"
-  },
-  "form": {
-    "description": "Description",
-    "amount": "Amount",
-    "date": "Date",
-    "category": "Category",
-    "selectCat": "Select a category",
-    "expense": "Expense",
-    "income": "Income"
-  }
+	"common": {
+		"dashboard": "Dashboard",
+		"settings": "Settings",
+		"logout": "Logout",
+		"theme": "Theme",
+		"add": "New Transaction",
+		"seed": "Seed Demo Data",
+		"save": "Save",
+		"saveSuccess": "Changes saved successfully!",
+		"cancel": "Cancel",
+		"error": "An error occurred. Please try again.",
+		"unexpectedError": "An unexpected error occurred. Please try again.",
+		"back": "Back"
+	},
+	"errors": {
+		"unauthorized": "Session expired. Please log in again.",
+		"forbidden": "You do not have permission to perform this action.",
+		"notFound": "Resource not found.",
+		"internal": "Internal server error.",
+		"network": "Communication error with the server.",
+		"noUser": "No user logged in."
+	},
+	"dashboard": {
+		"balance": "Total Balance",
+		"income": "Income",
+		"expense": "Expenses",
+		"budget": "Budget Progress",
+		"spending": "Spending by Category",
+		"recent": "Recent Transactions",
+		"noTransactions": "No transactions found.",
+		"noBudgets": "No budgets set for this month.",
+		"noBudgetsDesc": "Set up your monthly limits to stay on track.",
+		"noTransactionsDesc": "Start adding your first transaction to see statistics."
+	},
+	"login": {
+		"subtitle": "Your financial journey starts here.",
+		"email": "Email Address",
+		"password": "Password",
+		"button": "Sign In"
+	},
+	"form": {
+		"description": "Description",
+		"amount": "Amount",
+		"date": "Date",
+		"category": "Category",
+		"selectCat": "Select a category",
+		"expense": "Expense",
+		"income": "Income"
+	},
+	"validation": {
+		"email": "Invalid email address",
+		"passwordMinLength": "Password must be at least 6 characters",
+		"required": "This field is required",
+		"passwordMismatch": "Passwords do not match"
+	},
+	"settings": {
+		"title": "Settings",
+		"subtitle": "Manage your platform preferences and account",
+		"profile": "Profile",
+		"appearance": "Appearance",
+		"security": "Security",
+		"preferences": "Preferences",
+		"account": "Security",
+		"language": "Language",
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"currentPassword": "Current Password",
+		"newPassword": "New Password",
+		"profileDesc": "Manage your personal information and contact details",
+		"appearanceDesc": "Customize themes, languages, and visual preferences",
+		"securityDesc": "Update your password and manage account security",
+		"confirmPassword": "Confirm New Password",
+		"passwordChanged": "Password changed successfully!",
+		"profileUpdated": "Profile updated successfully!",
+		"changePassword": "Change Password",
+		"twoFactor": "Two-Factor Authentication",
+		"twoFactorDesc": "Add an extra layer of security to your account.",
+		"enable": "Enable",
+		"customization": "Customization",
+		"customizationDesc": "Manage your platform specific configurations",
+		"profileInfo": "Personal Information"
+	}
 }

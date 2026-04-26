@@ -1,0 +1,12 @@
+@use 'variables' as *;
+@use 'animations';
+@use 'tokens';
+@use 'mixins';
+
+// Estilos globais para o Storybook
+body {
+	font-family: $font-family;
+	background: var(--bg-main);
+	color: var(--text-main);
+	padding: 2rem;
+}

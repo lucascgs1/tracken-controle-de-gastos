@@ -1,0 +1,36 @@
+<div class="empty-state-container">
+	<div class="visual-wrapper">
+		@if (illustrationUrl) {
+			<img
+				[src]="illustrationUrl"
+				alt="Illustration"
+				class="illustration"
+			/>
+		} @else {
+			<span class="material-icons main-icon">{{ icon }}</span>
+		}
+	</div>
+
+	<div class="content">
+		@if (title) {
+			<h3 class="title">{{ title }}</h3>
+		}
+		@if (description) {
+			<p class="description">{{ description }}</p>
+		}
+	</div>
+
+	@if (actionLabel) {
+		<div class="actions">
+			<lib-tracken-button
+				variant="outline"
+				size="sm"
+				(btnClick)="onAction()"
+			>
+				{{ actionLabel }}
+			</lib-tracken-button>
+		</div>
+	}
+
+	<ng-content></ng-content>
+</div>

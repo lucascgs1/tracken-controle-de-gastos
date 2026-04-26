@@ -1,0 +1,72 @@
+.dropdown-container {
+	position: relative;
+	display: inline-block;
+
+	.dropdown-trigger {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+	}
+
+	.dropdown-menu-overlay {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		padding-top: 0.5rem;
+		z-index: 1000;
+		min-width: 200px;
+		animation: dropdownFadeIn 0.2s ease-out;
+	}
+
+	.dropdown-menu {
+		background: var(--bg-card);
+		backdrop-filter: var(--glass-blur);
+		border: 1px solid var(--glass-border);
+		border-radius: 0.75rem;
+		box-shadow: var(--shadow-premium);
+		overflow: hidden;
+		padding: 0.5rem;
+
+		::ng-deep {
+			button,
+			a {
+				display: flex;
+				align-items: center;
+				width: 100%;
+				padding: 0.75rem 1rem;
+				font-size: 0.875rem;
+				color: var(--text-main);
+				text-decoration: none;
+				background: none;
+				border: none;
+				border-radius: 0.5rem;
+				cursor: pointer;
+				transition: background 0.2s;
+				text-align: left;
+				gap: 0.75rem;
+
+				&:hover {
+					background: rgba(var(--primary), 0.1);
+				}
+
+				.material-icons {
+					font-size: 1.25rem;
+					color: var(--text-muted);
+				}
+			}
+		}
+	}
+}
+
+@keyframes dropdownFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Removido seletor manual .dark, variáveis globais agora resolvem tudo

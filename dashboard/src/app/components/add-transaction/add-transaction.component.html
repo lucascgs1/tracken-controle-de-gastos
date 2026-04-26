@@ -1,71 +1,64 @@
 <lib-tracken-modal
-  *transloco="let t"
-  [title]="t('common.add')"
-  (closed)="closeModal.emit()"
+	*transloco="let t"
+	[title]="t('common.add')"
+	(close)="closeModal.emit()"
 >
-  <form
-    [formGroup]="transactionForm"
-    (submit)="onSubmit(); $event.preventDefault()"
-  >
-    <div class="type-toggle-container">
-      <div class="type-toggle">
-        <button
-          type="button"
-          [class.active]="transactionForm.controls.type.value === 'expense'"
-          (click)="transactionForm.controls.type.setValue('expense')"
-        >
-          {{ t('form.expense') }}
-        </button>
-        <button
-          type="button"
-          [class.active]="transactionForm.controls.type.value === 'income'"
-          (click)="transactionForm.controls.type.setValue('income')"
-        >
-          {{ t('form.income') }}
-        </button>
-      </div>
-    </div>
+	<form
+		[formGroup]="transactionForm"
+		(submit)="onSubmit(); $event.preventDefault()"
+	>
+		<div class="type-toggle-container">
+			<lib-tracken-segmented-control
+				formControlName="type"
+				[options]="[
+					{ label: t('form.expense'), value: 'expense' },
+					{ label: t('form.income'), value: 'income' },
+				]"
+			></lib-tracken-segmented-control>
+		</div>
 
-    <lib-tracken-input
-      formControlName="description"
-      [label]="t('form.description')"
-      placeholder="e.g. Netflix Subscription"
-    ></lib-tracken-input>
+		<lib-tracken-input
+			formControlName="description"
+			[label]="t('form.description')"
+			placeholder="e.g. Netflix Subscription"
+		></lib-tracken-input>
 
-    <div class="form-row">
-      <lib-tracken-money-input
-        formControlName="amount"
-        [label]="t('form.amount')"
-      ></lib-tracken-money-input>
+		<div class="form-row">
+			<lib-tracken-money-input
+				formControlName="amount"
+				[label]="t('form.amount')"
+			></lib-tracken-money-input>
 
-      <lib-tracken-input
-        formControlName="date"
-        type="date"
-        [label]="t('form.date')"
-      ></lib-tracken-input>
-    </div>
+			<lib-tracken-input
+				formControlName="date"
+				type="date"
+				[label]="t('form.date')"
+			></lib-tracken-input>
+		</div>
 
-    <lib-tracken-select
-      formControlName="categoryId"
-      [label]="t('form.category')"
-      [placeholder]="t('form.selectCat')"
-      [options]="categoryOptions()"
-    ></lib-tracken-select>
+		<lib-tracken-select
+			formControlName="categoryId"
+			[label]="t('form.category')"
+			[placeholder]="t('form.selectCat')"
+			[options]="categoryOptions()"
+		></lib-tracken-select>
 
-    <div footer>
-      <lib-tracken-button
-        type="button"
-        variant="outline"
-        (btnClick)="closeModal.emit()"
-        >{{ t('common.cancel') }}</lib-tracken-button
-      >
+		<div footer>
+			<lib-tracken-button
+				type="button"
+				variant="outline"
+				(btnClick)="closeModal.emit()"
+			>
+				{{ t('common.cancel') }}
+			</lib-tracken-button>
 
-      <lib-tracken-button
-        type="submit"
-        variant="primary"
-        [disabled]="transactionForm.invalid"
-        >{{ t('common.save') }}</lib-tracken-button
-      >
-    </div>
-  </form>
+			<lib-tracken-button
+				type="submit"
+				variant="primary"
+				[disabled]="transactionForm.invalid"
+			>
+				{{ t('common.save') }}
+			</lib-tracken-button>
+		</div>
+	</form>
 </lib-tracken-modal>

@@ -3,18 +3,15 @@ import { App } from './app';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('App', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        App,
-      ],
-    }).compileComponents();
-  });
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [RouterTestingModule, App],
+		}).compileComponents();
+	});
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+	it('should create the app', () => {
+		const fixture = TestBed.createComponent(App);
+		const app = fixture.componentInstance;
+		expect(app).toBeTruthy();
+	});
 });

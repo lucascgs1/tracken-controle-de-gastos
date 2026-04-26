@@ -1,36 +1,84 @@
 {
-  "common": {
-    "dashboard": "Painel",
-    "logout": "Sair",
-    "theme": "Modo",
-    "add": "Nova Transação",
-    "seed": "Gerar Dados Demo",
-    "save": "Salvar Transação",
-    "cancel": "Cancelar"
-  },
-  "dashboard": {
-    "balance": "Saldo Total",
-    "income": "Receitas",
-    "expense": "Despesas",
-    "budget": "Progresso do Orçamento",
-    "spending": "Gastos por Categoria",
-    "recent": "Transações Recentes",
-    "noTransactions": "Nenhuma transação encontrada.",
-    "noBudgets": "Nenhum orçamento definido este mês."
-  },
-  "login": {
-    "subtitle": "Sua jornada financeira começa aqui.",
-    "email": "Endereço de E-mail",
-    "password": "Senha",
-    "button": "Entrar"
-  },
-  "form": {
-    "description": "Descrição",
-    "amount": "Valor",
-    "date": "Data",
-    "category": "Categoria",
-    "selectCat": "Selecione uma categoria",
-    "expense": "Despesa",
-    "income": "Receita"
-  }
+	"common": {
+		"dashboard": "Painel",
+		"settings": "Configurações",
+		"logout": "Sair",
+		"theme": "Modo",
+		"add": "Nova Transação",
+		"seed": "Gerar Dados Demo",
+		"save": "Salvar",
+		"saveSuccess": "Alterações salvas com sucesso!",
+		"cancel": "Cancelar",
+		"error": "Ocorreu um erro. Por favor, tente novamente.",
+		"unexpectedError": "Ocorreu um erro inesperado. Tente novamente.",
+		"back": "Voltar"
+	},
+	"errors": {
+		"unauthorized": "Sessão expirada. Faça login novamente.",
+		"forbidden": "Você não tem permissão para realizar esta ação.",
+		"notFound": "Recurso não encontrado.",
+		"internal": "Erro interno no servidor.",
+		"network": "Erro na comunicação com o servidor.",
+		"noUser": "Nenhum usuário logado."
+	},
+	"dashboard": {
+		"balance": "Saldo Total",
+		"income": "Receitas",
+		"expense": "Despesas",
+		"budget": "Progresso do Orçamento",
+		"spending": "Gastos por Categoria",
+		"recent": "Transações Recentes",
+		"noTransactions": "Nenhuma transação encontrada.",
+		"noBudgets": "Nenhum orçamento definido este mês.",
+		"noBudgetsDesc": "Defina seus limites mensais para manter o controle.",
+		"noTransactionsDesc": "Comece adicionando sua primeira transação para ver estatísticas."
+	},
+	"login": {
+		"subtitle": "Sua jornada financeira começa aqui.",
+		"email": "Endereço de E-mail",
+		"password": "Senha",
+		"button": "Entrar"
+	},
+	"form": {
+		"description": "Descrição",
+		"amount": "Valor",
+		"date": "Data",
+		"category": "Categoria",
+		"selectCat": "Selecione uma categoria",
+		"expense": "Despesa",
+		"income": "Receita"
+	},
+	"validation": {
+		"email": "Endereço de e-mail inválido",
+		"passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+		"required": "Este campo é obrigatório",
+		"passwordMismatch": "As senhas não coincidem"
+	},
+	"settings": {
+		"title": "Configurações",
+		"subtitle": "Gerencie suas preferências e conta",
+		"profile": "Perfil",
+		"appearance": "Aparência",
+		"security": "Segurança",
+		"preferences": "Preferências",
+		"account": "Segurança",
+		"language": "Idioma",
+		"firstName": "Nome",
+		"lastName": "Sobrenome",
+		"currentPassword": "Senha Atual",
+		"newPassword": "Nova Senha",
+		"profileDesc": "Gerencie suas informações pessoais e dados de contato",
+		"appearanceDesc": "Customize temas, idiomas e preferências visuais",
+		"securityDesc": "Atualize sua senha e gerencie a segurança da conta",
+		"confirmPassword": "Confirmar Nova Senha",
+		"passwordChanged": "Senha alterada com sucesso!",
+		"profileUpdated": "Perfil atualizado com sucesso!",
+		"changePassword": "Alterar Senha",
+		"twoFactor": "Autenticação em Dois Fatores",
+		"twoFactorDesc": "Adicione uma camada extra de segurança à sua conta.",
+		"enable": "Ativar",
+		"customization": "Customização",
+		"customizationDesc": "Gerencie as configurações específicas da plataforma",
+		"profileInfo": "Informações Pessoais"
+	}
 }

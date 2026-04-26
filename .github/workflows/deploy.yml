@@ -1,0 +1,72 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # ou o nome da sua branch principal
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint and Test
+        run: |
+          pnpm nx run-many -t lint
+          pnpm nx run-many -t test --coverage
+
+      - name: End-to-End Tests
+        run: |
+          npx playwright install --with-deps
+          pnpm nx run-many -t e2e
+
+      - name: Build All Projects
+        run: |
+          # Build Shell
+          pnpm nx build shell --base-href=/tracken/ --configuration=production
+
+          # Build Remotes
+          pnpm nx build dashboard --base-href=/tracken/dashboard/ --configuration=production
+          pnpm nx build settings --base-href=/tracken/settings/ --configuration=production
+
+      - name: Prepare Deployment Folder
+        run: |
+          mkdir -p dist/deploy
+
+          # Copia o Shell para a raiz do deploy
+          cp -r dist/shell/* dist/deploy/
+
+          # Organiza os remotes em subpastas
+          mkdir -p dist/deploy/dashboard
+          cp -r dist/dashboard/* dist/deploy/dashboard/
+
+          mkdir -p dist/deploy/settings
+          cp -r dist/settings/* dist/deploy/settings/
+
+          # Fix para rotas Angular no GitHub Pages (SPA)
+          cp dist/deploy/index.html dist/deploy/404.html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/deploy

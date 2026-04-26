@@ -1,0 +1,76 @@
+<ng-container *transloco="let t">
+	<lib-tracken-page-header
+		[title]="t('settings.profile')"
+		[subtitle]="t('settings.profileDesc')"
+		libTrackenAnimate="fade-in"
+	>
+		<div actions>
+			<lib-tracken-button
+				variant="ghost"
+				size="sm"
+				routerLink="/settings"
+			>
+				{{ t('common.back') }}
+			</lib-tracken-button>
+			<lib-tracken-button
+				variant="primary"
+				size="sm"
+				(btnClick)="onSave()"
+				[loading]="loading()"
+				[disabled]="form.invalid || loading() || !dataLoaded()"
+			>
+				{{ t('common.save') }}
+			</lib-tracken-button>
+		</div>
+	</lib-tracken-page-header>
+
+	<lib-tracken-card
+		[title]="t('settings.profile')"
+		[formGroup]="form"
+		libTrackenAnimate="slide-up"
+		[delay]="200"
+	>
+		@if (dataLoaded()) {
+			<div
+				class="settings-form-grid"
+				libTrackenAnimate="fade-in"
+			>
+				<lib-tracken-input
+					[label]="t('settings.firstName')"
+					formControlName="firstName"
+					[placeholder]="t('settings.firstName')"
+				></lib-tracken-input>
+
+				<lib-tracken-input
+					[label]="t('settings.lastName')"
+					formControlName="lastName"
+					[placeholder]="t('settings.lastName')"
+				></lib-tracken-input>
+
+				<lib-tracken-input
+					[label]="t('settings.email')"
+					formControlName="email"
+					type="email"
+					[disabled]="true"
+				></lib-tracken-input>
+			</div>
+		} @else {
+			<div class="settings-form-grid">
+				@for (i of [1, 2, 3]; track i) {
+					<div class="skeleton-field">
+						<lib-tracken-skeleton
+							width="100px"
+							height="1rem"
+							style="margin-bottom: 0.5rem"
+						></lib-tracken-skeleton>
+						<lib-tracken-skeleton
+							width="100%"
+							height="2.5rem"
+							variant="rounded"
+						></lib-tracken-skeleton>
+					</div>
+				}
+			</div>
+		}
+	</lib-tracken-card>
+</ng-container>

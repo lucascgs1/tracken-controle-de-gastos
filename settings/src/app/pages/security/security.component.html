@@ -1,0 +1,91 @@
+<ng-container *transloco="let t">
+	<lib-tracken-page-header
+		[title]="t('settings.account')"
+		[subtitle]="t('settings.securityDesc')"
+		libTrackenAnimate="fade-in"
+	>
+		<div actions>
+			<lib-tracken-button
+				variant="ghost"
+				size="sm"
+				routerLink="/settings"
+			>
+				{{ t('common.back') }}
+			</lib-tracken-button>
+			<lib-tracken-button
+				variant="primary"
+				size="sm"
+				(btnClick)="onSave()"
+				[loading]="loading()"
+				[disabled]="form.invalid || loading()"
+			>
+				{{ t('common.save') }}
+			</lib-tracken-button>
+		</div>
+	</lib-tracken-page-header>
+
+	<div
+		class="security-grid"
+		libTrackenAnimate="slide-up"
+		[delay]="200"
+	>
+		<lib-tracken-card
+			[title]="t('settings.changePassword')"
+			[formGroup]="form"
+		>
+			<div class="settings-form-grid">
+				<lib-tracken-input
+					[label]="t('settings.currentPassword')"
+					formControlName="currentPassword"
+					type="password"
+					placeholder="••••••••"
+				></lib-tracken-input>
+
+				<lib-tracken-input
+					[label]="t('settings.newPassword')"
+					formControlName="newPassword"
+					type="password"
+					[placeholder]="t('login.password')"
+					[error]="
+						form.controls.newPassword.touched && form.controls.newPassword.invalid
+							? t('validation.passwordMinLength')
+							: null
+					"
+				></lib-tracken-input>
+
+				<lib-tracken-input
+					[label]="t('settings.confirmPassword')"
+					formControlName="confirmPassword"
+					type="password"
+					[placeholder]="t('login.password')"
+					[error]="
+						form.controls.confirmPassword.touched && form.errors?.['passwordMismatch']
+							? t('validation.passwordMismatch')
+							: null
+					"
+				></lib-tracken-input>
+			</div>
+		</lib-tracken-card>
+
+		<lib-tracken-card
+			[title]="t('settings.twoFactor')"
+			libTrackenAnimate="slide-up"
+			[delay]="400"
+		>
+			<div class="two-factor-content">
+				<div class="info">
+					<span class="material-icons">security</span>
+					<p>
+						{{ t('settings.twoFactorDesc') }}
+					</p>
+				</div>
+				<lib-tracken-button
+					variant="outline"
+					size="sm"
+				>
+					{{ t('settings.enable') }}
+				</lib-tracken-button>
+			</div>
+		</lib-tracken-card>
+	</div>
+</ng-container>

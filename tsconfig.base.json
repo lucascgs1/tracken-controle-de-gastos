@@ -16,7 +16,8 @@
 		"paths": {
 			"dashboard/Routes": ["./dashboard/src/app/integration/dashboard-integration.routes.ts"],
 			"@tracken/shared": ["./libs/shared/src/index.ts"],
-			"@tracken/data-access": ["./libs/data-access/src/index.ts"]
+			"@tracken/data-access": ["./libs/data-access/src/index.ts"],
+			"settings/Routes": ["./settings/src/app/remote-entry/entry.routes.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]
