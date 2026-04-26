@@ -34,8 +34,18 @@ Tracken is a production-grade fintech application built with Angular, Nx, and Mi
 pnpm install
 
 # Setup environment variables
-# Edit the .env file with your Firebase credentials
+# 1. Create a .env file in the root based on .env.example
+# 2. Add your Firebase credentials
+# 3. The environment.ts files will be automatically generated on pnpm start
 ```
+
+### 🔒 Security Note
+
+The project uses a dynamic environment generation system.
+
+- `environment.ts` files are **ignored** by Git.
+- `environment.ts.template` files act as a skeleton for the repository.
+- **Never** commit real keys to the template files.
 
 ### 3. Running the App
 
