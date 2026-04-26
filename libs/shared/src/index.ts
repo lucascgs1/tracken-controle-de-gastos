@@ -8,8 +8,11 @@ export * from './lib/components/ui/modal/modal.component';
 export * from './lib/components/ui/page-header/page-header.component';
 export * from './lib/components/ui/dropdown/dropdown.component';
 export * from './lib/components/ui/page/page.component';
+export * from './lib/components/ui/toast/toast.component';
 
 // Services
 export * from './lib/services/language.service';
+export * from './lib/services/theme.service';
+export * from './lib/services/toast.service';
 export * from './lib/services/transloco-config';
 export * from './lib/services/transloco-loader';

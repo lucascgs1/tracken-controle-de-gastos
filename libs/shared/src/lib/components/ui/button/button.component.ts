@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, input } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
 	selector: 'lib-tracken-button',
@@ -6,6 +6,7 @@ import { Component, Output, EventEmitter, input } from '@angular/core';
 	imports: [],
 	templateUrl: './button.component.html',
 	styleUrl: './button.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackenButton {
 	readonly variant = input<'primary' | 'secondary' | 'outline' | 'ghost'>('primary');
@@ -16,7 +17,7 @@ export class TrackenButton {
 	readonly icon = input<string>();
 	readonly iconPosition = input<'left' | 'right'>('left');
 
-	@Output() btnClick = new EventEmitter<void>();
+	readonly btnClick = output<void>();
 
 	onClick() {
 		if (!this.disabled() && !this.loading()) {

@@ -3,10 +3,11 @@
 		"dashboard": "Dashboard",
 		"settings": "Settings",
 		"logout": "Logout",
-		"theme": "Mode",
+		"theme": "Theme",
 		"add": "New Transaction",
 		"seed": "Seed Demo Data",
-		"save": "Save Transaction",
+		"save": "Save",
+		"saveSuccess": "Changes saved successfully!",
 		"cancel": "Cancel"
 	},
 	"dashboard": {

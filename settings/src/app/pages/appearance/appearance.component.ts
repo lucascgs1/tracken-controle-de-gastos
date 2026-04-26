@@ -8,8 +8,9 @@ import {
 	TrackenSelect,
 	TrackenButton,
 	SelectOption,
+	ToastService,
 } from '@tracken/shared';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 
 @Component({
 	standalone: true,
@@ -28,6 +29,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
 })
 export class AppearanceSettingsComponent {
 	private fb = inject(FormBuilder);
+	private toastService = inject(ToastService);
+	private translocoService = inject(TranslocoService);
 
 	form = this.fb.group({
 		theme: ['dark'],
@@ -50,12 +53,11 @@ export class AppearanceSettingsComponent {
 	onSave() {
 		if (this.form.valid) {
 			this.loading.set(true);
-			console.log('Saving appearance...', this.form.value);
 
 			// Simulando um salvamento
 			setTimeout(() => {
 				this.loading.set(false);
-				alert('Preferências salvas com sucesso!');
+				this.toastService.success(this.translocoService.translate('common.saveSuccess'));
 			}, 1000);
 		}
 	}

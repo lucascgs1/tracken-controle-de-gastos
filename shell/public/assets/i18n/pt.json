@@ -6,7 +6,8 @@
 		"theme": "Modo",
 		"add": "Nova Transação",
 		"seed": "Gerar Dados Demo",
-		"save": "Salvar Transação",
+		"save": "Salvar",
+		"saveSuccess": "Alterações salvas com sucesso!",
 		"cancel": "Cancelar"
 	},
 	"dashboard": {
