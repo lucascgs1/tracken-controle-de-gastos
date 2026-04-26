@@ -1,6 +1,5 @@
 import {
 	Component,
-	signal,
 	computed,
 	ChangeDetectionStrategy,
 	inject,

@@ -27,8 +27,8 @@ test.describe('Authentication Flow', () => {
 	test('should show validation error for invalid email', async ({ page }) => {
 		await page.goto('/auth/login');
 
-		await page.fill('input[type="email"]', 'invalid-email');
-		await page.blur('input[type="email"]');
+		await page.locator('input[type="email"]').fill('invalid-email');
+		await page.locator('input[type="email"]').blur();
 
 		// Error message should appear (handled by lib-tracken-input)
 		const error = page.locator('.error-msg');

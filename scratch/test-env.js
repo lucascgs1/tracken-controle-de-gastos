@@ -1,6 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
 // Simulate the validate-env.js logic
 const exampleEnv = `
 FIREBASE_API_KEY=
