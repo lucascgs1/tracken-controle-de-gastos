@@ -44,6 +44,7 @@
 						}
 					],
 					"outputHashing": "all",
+					"serviceWorker": "shell/ngsw-config.json",
 					"customWebpackConfig": {
 						"path": "shell/webpack.prod.config.ts"
 					}

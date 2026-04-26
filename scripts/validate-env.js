@@ -13,20 +13,33 @@ if (!fs.existsSync(envPath)) {
 const exampleEnv = fs.readFileSync(examplePath, 'utf8');
 const currentEnv = fs.readFileSync(envPath, 'utf8');
 
-const getKeys = (content) =>
+const getEntries = (content) =>
 	content
 		.split('\n')
 		.filter((line) => line && !line.startsWith('#'))
-		.map((line) => line.split('=')[0].trim());
+		.map((line) => {
+			const [key, ...valueParts] = line.split('=');
+			return { key: key.trim(), value: valueParts.join('=').trim() };
+		});
 
-const requiredKeys = getKeys(exampleEnv);
-const presentKeys = getKeys(currentEnv);
+const requiredKeys = getEntries(exampleEnv).map((e) => e.key);
+const presentEntries = getEntries(currentEnv);
+const presentKeys = presentEntries.map((e) => e.key);
 
 const missingKeys = requiredKeys.filter((key) => !presentKeys.includes(key));
+const emptyKeys = presentEntries
+	.filter((e) => requiredKeys.includes(e.key) && !e.value)
+	.map((e) => e.key);
 
-if (missingKeys.length > 0) {
-	console.error('\x1b[31m%s\x1b[0m', '❌ Erro: Variáveis de ambiente faltando no seu .env:');
-	missingKeys.forEach((key) => console.log(`   - ${key}`));
+if (missingKeys.length > 0 || emptyKeys.length > 0) {
+	if (missingKeys.length > 0) {
+		console.error('\x1b[31m%s\x1b[0m', '❌ Erro: Variáveis de ambiente faltando no seu .env:');
+		missingKeys.forEach((key) => console.log(`   - ${key}`));
+	}
+	if (emptyKeys.length > 0) {
+		console.error('\x1b[31m%s\x1b[0m', '❌ Erro: Variáveis de ambiente vazias no seu .env:');
+		emptyKeys.forEach((key) => console.log(`   - ${key}`));
+	}
 	console.log('\nAtualize seu .env para evitar erros em tempo de execução.\n');
 	process.exit(1);
 }

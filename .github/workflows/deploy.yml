@@ -27,16 +27,26 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint and Test
+        run: |
+          pnpm nx run-many -t lint
+          pnpm nx run-many -t test --coverage
+
+      - name: End-to-End Tests
+        run: |
+          npx playwright install --with-deps
+          pnpm nx run-many -t e2e
 
       - name: Build All Projects
         run: |
           # Build Shell
-          pnpm nx build shell --base-href=/tracken/
+          pnpm nx build shell --base-href=/tracken/ --configuration=production
 
           # Build Remotes
-          pnpm nx build dashboard --base-href=/tracken/dashboard/
-          pnpm nx build settings --base-href=/tracken/settings/
+          pnpm nx build dashboard --base-href=/tracken/dashboard/ --configuration=production
+          pnpm nx build settings --base-href=/tracken/settings/ --configuration=production
 
       - name: Prepare Deployment Folder
         run: |

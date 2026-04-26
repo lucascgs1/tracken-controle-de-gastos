@@ -6,6 +6,8 @@ import { environment } from '../environments/environment';
 import { provideTrackenTransloco } from '@tracken/shared';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { GlobalErrorHandler, httpErrorInterceptor } from '@tracken/shared';
+import { provideServiceWorker } from '@angular/service-worker';
+import { isDevMode } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -15,5 +17,9 @@ export const appConfig: ApplicationConfig = {
 		provideHttpClient(withInterceptors([httpErrorInterceptor])),
 		provideTrackenTransloco(),
 		{ provide: ErrorHandler, useClass: GlobalErrorHandler },
+		provideServiceWorker('ngsw-worker.js', {
+			enabled: !isDevMode(),
+			registrationStrategy: 'registerWhenStable:30000',
+		}),
 	],
 };

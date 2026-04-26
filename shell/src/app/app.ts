@@ -1,4 +1,12 @@
-import { Component, signal, computed, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+	Component,
+	signal,
+	computed,
+	ChangeDetectionStrategy,
+	inject,
+	effect,
+	Renderer2,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
 	TrackenButton,
@@ -34,6 +42,15 @@ export class App {
 	private authFacade = inject(AuthFacade);
 	public langService = inject(LanguageService);
 	public themeService = inject(ThemeService);
+	private renderer = inject(Renderer2);
+
+	constructor() {
+		// Atualiza o atributo 'lang' do HTML dinamicamente para A11y/SEO
+		effect(() => {
+			const currentLang = this.langService.currentLang();
+			this.renderer.setAttribute(document.documentElement, 'lang', currentLang);
+		});
+	}
 
 	// Reatividade fina com Signals
 	user = toSignal(this.authFacade.user$);
