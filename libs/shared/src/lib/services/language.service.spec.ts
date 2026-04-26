@@ -2,14 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { LanguageService } from './language.service';
 import { TranslocoService } from '@jsverse/transloco';
 import { describe, it, expect, beforeEach, vi, Mock } from 'vitest';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 describe('LanguageService', () => {
 	let service: LanguageService;
 	let translocoServiceMock: {
 		setActiveLang: Mock;
 		getActiveLang: Mock;
-		langChanges$: any;
+		langChanges$: Observable<string>;
 	};
 
 	beforeEach(() => {

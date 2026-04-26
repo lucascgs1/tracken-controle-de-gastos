@@ -7,7 +7,6 @@ import { WritableSignal, signal } from '@angular/core';
 import { provideTrackenTransloco } from '@tracken/shared';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { of } from 'rxjs';
 
 describe('SecuritySettingsComponent', () => {
 	let component: SecuritySettingsComponent;

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ThemeService, Theme } from './theme.service';
+import { ThemeService } from './theme.service';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('ThemeService', () => {
