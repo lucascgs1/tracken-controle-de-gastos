@@ -16,7 +16,8 @@
 		"spending": "Gastos por Categoria",
 		"recent": "Transações Recentes",
 		"noTransactions": "Nenhuma transação encontrada.",
-		"noBudgets": "Nenhum orçamento definido este mês."
+		"noBudgets": "Nenhum orçamento definido este mês.",
+		"noBudgetsDesc": "Defina seus limites mensais para manter o controle."
 	},
 	"login": {
 		"subtitle": "Sua jornada financeira começa aqui.",

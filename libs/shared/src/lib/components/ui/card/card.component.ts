@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackenCard {
-	title = input<string>();
-	noPadding = input(false);
+	readonly title = input<string>();
+	readonly subtitle = input<string>();
+	readonly padding = input<'none' | 'sm' | 'md' | 'lg'>('md');
+	readonly glass = input(false);
 }

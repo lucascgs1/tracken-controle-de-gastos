@@ -19,7 +19,8 @@
 		"spending": "Gastos por Categoria",
 		"recent": "Transações Recentes",
 		"noTransactions": "Nenhuma transação encontrada.",
-		"noBudgets": "Nenhum orçamento definido este mês."
+		"noBudgets": "Nenhum orçamento definido este mês.",
+		"noBudgetsDesc": "Defina seus limites mensais para manter o controle."
 	},
 	"login": {
 		"subtitle": "Sua jornada financeira começa aqui.",
@@ -40,6 +41,8 @@
 		"title": "Configurações",
 		"subtitle": "Gerencie suas preferências e conta",
 		"profile": "Perfil",
+		"appearance": "Aparência",
+		"security": "Segurança",
 		"preferences": "Preferências",
 		"account": "Segurança",
 		"language": "Idioma",
@@ -53,6 +56,7 @@
 		"confirmPassword": "Confirmar Nova Senha",
 		"passwordChanged": "Senha alterada com sucesso!",
 		"customization": "Customização",
+		"customizationDesc": "Gerencie as configurações específicas da plataforma",
 		"profileInfo": "Informações Pessoais"
 	}
 }

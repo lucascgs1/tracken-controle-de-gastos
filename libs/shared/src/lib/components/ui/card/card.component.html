@@ -1,10 +1,19 @@
 <div
 	class="premium-card"
-	[class.no-padding]="noPadding()"
+	[class.glass]="glass()"
+	[class]="'padding-' + padding()"
 >
-	@if (title()) {
+	@if (title() || subtitle()) {
 		<div class="card-header">
-			<h3>{{ title() }}</h3>
+			<div class="header-text">
+				<h3 *ngIf="title()">{{ title() }}</h3>
+				<p
+					*ngIf="subtitle()"
+					class="subtitle"
+				>
+					{{ subtitle() }}
+				</p>
+			</div>
 			<ng-content select="[header-actions]"></ng-content>
 		</div>
 	}

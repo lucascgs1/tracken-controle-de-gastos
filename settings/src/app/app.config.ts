@@ -4,6 +4,7 @@ import { provideDataAccess } from '@tracken/data-access';
 import { provideTrackenTransloco, GlobalErrorHandler, httpErrorInterceptor } from '@tracken/shared';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { settingsRoutes } from './settings.routes';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
 	providers: [

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class TrackenSkeleton {
 	width = input<string>('100%');
 	height = input<string>('1rem');
-	variant = input<'text' | 'circle' | 'rounded'>('text');
+	variant = input<'text' | 'circle' | 'rounded' | 'rect'>('text');
 
 	@HostBinding('class')
 	get hostClasses() {

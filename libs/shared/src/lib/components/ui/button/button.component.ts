@@ -9,7 +9,9 @@ import { Component, input, output, ChangeDetectionStrategy } from '@angular/core
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackenButton {
-	readonly variant = input<'primary' | 'secondary' | 'outline' | 'ghost'>('primary');
+	readonly variant = input<'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success'>(
+		'primary',
+	);
 	readonly size = input<'sm' | 'md' | 'lg'>('md');
 	readonly disabled = input(false);
 	readonly loading = input(false);

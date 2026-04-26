@@ -33,7 +33,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
 				}
 			}
 
-			toast.show(errorMessage, 'danger');
+			toast.show(errorMessage, 'error');
 			return throwError(() => error);
 		}),
 	);

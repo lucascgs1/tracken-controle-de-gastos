@@ -10,6 +10,13 @@
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 
+	&.primary {
+		background: linear-gradient(135deg, $primary, $primary-dark);
+		color: white;
+		border: none;
+		box-shadow: 0 4px 6px -1px rgba($primary, 0.2);
+	}
+
 	&.success {
 		background: rgba($success, 0.15);
 		color: $success;
@@ -29,9 +36,9 @@
 	}
 
 	&.info {
-		background: rgba($primary, 0.15);
-		color: $primary;
-		border: 1px solid rgba($primary, 0.2);
+		background: rgba($info, 0.15);
+		color: $info;
+		border: 1px solid rgba($info, 0.2);
 	}
 
 	&.ghost {

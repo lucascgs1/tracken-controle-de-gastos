@@ -20,6 +20,10 @@
 	&.rounded {
 		border-radius: 1rem;
 	}
+
+	&.rect {
+		border-radius: 0.5rem;
+	}
 }
 
 @keyframes shimmer {

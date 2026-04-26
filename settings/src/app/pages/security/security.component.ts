@@ -13,7 +13,6 @@ import {
 	TrackenCard,
 	TrackenInput,
 	TrackenButton,
-	TrackenSkeleton,
 	TrackenAnimateDirective,
 } from '@tracken/shared';
 import { AuthFacade } from '@tracken/data-access';
@@ -32,7 +31,6 @@ import { TranslocoDirective } from '@jsverse/transloco';
 		TrackenCard,
 		TrackenInput,
 		TrackenButton,
-		TrackenSkeleton,
 		TrackenAnimateDirective,
 		TranslocoDirective,
 	],

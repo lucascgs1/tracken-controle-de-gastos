@@ -1,7 +1,7 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type BadgeVariant = 'success' | 'danger' | 'warning' | 'info' | 'ghost';
+export type BadgeVariant = 'primary' | 'success' | 'danger' | 'warning' | 'info' | 'ghost';
 
 @Component({
 	selector: 'lib-tracken-badge',

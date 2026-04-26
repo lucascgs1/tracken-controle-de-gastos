@@ -16,7 +16,8 @@
 		"spending": "Spending by Category",
 		"recent": "Recent Transactions",
 		"noTransactions": "No transactions found.",
-		"noBudgets": "No budgets set for this month."
+		"noBudgets": "No budgets set for this month.",
+		"noBudgetsDesc": "Set up your monthly limits to stay on track."
 	},
 	"login": {
 		"subtitle": "Your financial journey starts here.",

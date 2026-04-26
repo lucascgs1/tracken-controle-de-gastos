@@ -1,14 +1,12 @@
-import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, NgZone, inject } from '@angular/core';
 import { ToastService } from '../services/toast.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
-	constructor(
-		private injector: Injector,
-		private zone: NgZone,
-	) {}
+	private injector = inject(Injector);
+	private zone = inject(NgZone);
 
-	handleError(error: any): void {
+	handleError(error: unknown): void {
 		// Loga no console para debug
 		console.error('Tracken [GlobalError]:', error);
 
@@ -17,8 +15,9 @@ export class GlobalErrorHandler implements ErrorHandler {
 
 		// Garante que o toast rode dentro da zona do Angular para atualizar a UI
 		this.zone.run(() => {
-			const message = error?.message || 'Ocorreu um erro inesperado. Tente novamente.';
-			toast.show(message, 'danger');
+			const message =
+				error instanceof Error ? error.message : 'Ocorreu um erro inesperado. Tente novamente.';
+			toast.show(message, 'error');
 		});
 	}
 }

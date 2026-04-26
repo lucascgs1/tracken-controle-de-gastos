@@ -31,6 +31,28 @@
 		}
 	}
 
+	&-danger {
+		background: linear-gradient(135deg, $danger, color.adjust($danger, $lightness: -10%));
+		color: white;
+		box-shadow: 0 10px 15px -3px rgba($danger, 0.3);
+		&:hover:not(:disabled) {
+			transform: translateY(-2px);
+			box-shadow: 0 20px 25px -5px rgba($danger, 0.4);
+			filter: brightness(1.1);
+		}
+	}
+
+	&-success {
+		background: linear-gradient(135deg, $success, color.adjust($success, $lightness: -10%));
+		color: white;
+		box-shadow: 0 10px 15px -3px rgba($success, 0.3);
+		&:hover:not(:disabled) {
+			transform: translateY(-2px);
+			box-shadow: 0 20px 25px -5px rgba($success, 0.4);
+			filter: brightness(1.1);
+		}
+	}
+
 	&-secondary {
 		background: var(--bg-main);
 		color: var(--text-main);
