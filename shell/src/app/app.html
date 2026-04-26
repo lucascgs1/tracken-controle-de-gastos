@@ -30,33 +30,33 @@
 			</lib-tracken-button>
 
 			@if (user$ | async; as user) {
-				<lib-tracken-button
-					variant="ghost"
-					size="sm"
-					routerLink="/dashboard"
-				>
-					{{ t('common.dashboard') }}
-				</lib-tracken-button>
+			<lib-tracken-button
+				variant="ghost"
+				size="sm"
+				routerLink="/dashboard"
+			>
+				{{ t('common.dashboard') }}
+			</lib-tracken-button>
 
-				<lib-tracken-dropdown>
-					<div
-						trigger
-						class="user-trigger"
-					>
-						<div class="avatar">{{ user.email[0].toUpperCase() }}</div>
-						<span class="material-icons">expand_more</span>
-					</div>
-					<div menu>
-						<a routerLink="/settings">
-							<span class="material-icons">settings</span>
-							{{ t('common.settings') }}
-						</a>
-						<button (click)="onLogout()">
-							<span class="material-icons">logout</span>
-							{{ t('common.logout') }}
-						</button>
-					</div>
-				</lib-tracken-dropdown>
+			<lib-tracken-dropdown>
+				<div
+					trigger
+					class="user-trigger"
+				>
+					<div class="avatar">{{ user.email[0].toUpperCase() }}</div>
+					<span class="material-icons">expand_more</span>
+				</div>
+				<div menu>
+					<a routerLink="/settings">
+						<span class="material-icons">settings</span>
+						{{ t('common.settings') }}
+					</a>
+					<button (click)="onLogout()">
+						<span class="material-icons">logout</span>
+						{{ t('common.logout') }}
+					</button>
+				</div>
+			</lib-tracken-dropdown>
 			}
 		</nav>
 	</header>

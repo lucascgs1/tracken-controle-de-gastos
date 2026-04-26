@@ -9,6 +9,7 @@
 		"lint": "nx run-many -t lint",
 		"format": "nx format:write",
 		"format:check": "nx format:check",
+		"format:changed": "nx format:write --uncommitted",
 		"prepare": "husky",
 		"commit": "cz"
 	},

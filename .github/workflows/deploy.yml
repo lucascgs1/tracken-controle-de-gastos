@@ -33,7 +33,7 @@ jobs:
         run: |
           # Build Shell
           pnpm nx build shell --base-href=/tracken/
-          
+
           # Build Remotes
           pnpm nx build dashboard --base-href=/tracken/dashboard/
           pnpm nx build settings --base-href=/tracken/settings/
@@ -41,17 +41,17 @@ jobs:
       - name: Prepare Deployment Folder
         run: |
           mkdir -p dist/deploy
-          
+
           # Copia o Shell para a raiz do deploy
           cp -r dist/shell/* dist/deploy/
-          
+
           # Organiza os remotes em subpastas
           mkdir -p dist/deploy/dashboard
           cp -r dist/dashboard/* dist/deploy/dashboard/
-          
+
           mkdir -p dist/deploy/settings
           cp -r dist/settings/* dist/deploy/settings/
-          
+
           # Fix para rotas Angular no GitHub Pages (SPA)
           cp dist/deploy/index.html dist/deploy/404.html
 

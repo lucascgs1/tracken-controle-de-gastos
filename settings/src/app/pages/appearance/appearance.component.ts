@@ -2,7 +2,13 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { TrackenPageHeader, TrackenCard, TrackenSelect, TrackenButton, SelectOption } from '@tracken/shared';
+import {
+	TrackenPageHeader,
+	TrackenCard,
+	TrackenSelect,
+	TrackenButton,
+	SelectOption,
+} from '@tracken/shared';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
