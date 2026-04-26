@@ -1,7 +1,17 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
+import { provideDataAccess } from '@tracken/data-access';
+import { provideHttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { provideTrackenTransloco } from '@tracken/shared';
+import { settingsRoutes } from './settings.routes';
 
 export const appConfig: ApplicationConfig = {
-	providers: [provideBrowserGlobalErrorListeners(), provideRouter(appRoutes)],
+	providers: [
+		provideZoneChangeDetection({ eventCoalescing: true }),
+		provideRouter(settingsRoutes),
+		provideDataAccess(environment.firebase),
+		provideHttpClient(),
+		provideTrackenTransloco(),
+	],
 };

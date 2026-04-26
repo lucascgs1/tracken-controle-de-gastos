@@ -1,6 +1,7 @@
-:host {
-	display: block;
-	min-height: 100%;
+.settings-home-container {
+	padding: 0 2rem 2rem;
+	max-width: 1000px;
+	margin: 0 auto;
 
 	.menu-grid {
 		display: grid;
@@ -12,9 +13,8 @@
 		display: flex;
 		align-items: center;
 		padding: 1.5rem;
-		background: var(--bg-card); // Corrigido para variável global
-		backdrop-filter: var(--glass-blur);
-		border: 1px solid var(--glass-border); // Corrigido para variável global
+		background: var(--card-bg, #ffffff);
+		border: 1px solid var(--border-color, #e2e8f0);
 		border-radius: 1rem;
 		text-decoration: none;
 		transition: all 0.2s ease;
@@ -23,7 +23,7 @@
 		&:hover {
 			border-color: var(--primary-color, #3b82f6);
 			transform: translateY(-2px);
-			box-shadow: var(--shadow-premium);
+			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
 			.arrow {
 				transform: translateX(5px);
@@ -37,7 +37,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: var(--bg-main);
+			background: #f1f5f9;
 			border-radius: 0.75rem;
 			color: var(--primary-color, #3b82f6);
 
@@ -53,24 +53,44 @@
 				margin: 0;
 				font-size: 1.125rem;
 				font-weight: 600;
-				color: var(--text-main);
-				transition: color 0.3s ease;
+				color: var(--text-main, #1e293b);
 			}
 
 			p {
 				margin: 0.25rem 0 0;
 				font-size: 0.875rem;
-				color: var(--text-muted);
-				transition: color 0.3s ease;
+				color: var(--text-muted, #64748b);
 			}
 		}
 
 		.arrow {
 			font-size: 1.5rem;
-			color: var(--text-dim);
+			color: var(--border-color, #cbd5e1);
 			transition: all 0.2s ease;
 		}
 	}
 }
 
-// Removido o seletor hardcoded .dark pois agora as variáveis CSS cuidam de tudo
+:host-context(.dark) {
+	.menu-card {
+		background: #1e293b;
+		border-color: #334155;
+
+		&:hover {
+			border-color: #3b82f6;
+		}
+
+		.icon-wrapper {
+			background: #0f172a;
+		}
+
+		.content {
+			h3 {
+				color: #f8fafc;
+			}
+			p {
+				color: #94a3b8;
+			}
+		}
+	}
+}

@@ -13,6 +13,8 @@ export class TrackenButton {
 	readonly disabled = input(false);
 	readonly loading = input(false);
 	readonly type = input<'button' | 'submit' | 'reset'>('button');
+	readonly icon = input<string>();
+	readonly iconPosition = input<'left' | 'right'>('left');
 
 	@Output() btnClick = new EventEmitter<void>();
 

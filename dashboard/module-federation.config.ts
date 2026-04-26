@@ -1,29 +1,29 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
-  name: 'dashboard',
-  exposes: {
-    './Routes': 'src/app/integration/dashboard-integration.routes.ts',
-  },
-  shared: (libraryName, sharedConfig) => {
-    if (
-      [
-        '@angular/core',
-        '@angular/common',
-        '@angular/router',
-        '@ngrx/store',
-        '@ngrx/effects',
-      ].includes(libraryName)
-    ) {
-      return {
-        ...sharedConfig,
-        singleton: true,
-        strictVersion: false,
-        requiredVersion: false,
-      };
-    }
-    return sharedConfig;
-  },
+	name: 'dashboard',
+	exposes: {
+		'./dashboardIntegrationRoutes': 'src/app/integration/dashboard-integration.routes.ts',
+	},
+	shared: (libraryName, sharedConfig) => {
+		if (
+			[
+				'@angular/core',
+				'@angular/common',
+				'@angular/router',
+				'@ngrx/store',
+				'@ngrx/effects',
+			].includes(libraryName)
+		) {
+			return {
+				...sharedConfig,
+				singleton: true,
+				strictVersion: false,
+				requiredVersion: false,
+			};
+		}
+		return sharedConfig;
+	},
 };
 
 export default config;

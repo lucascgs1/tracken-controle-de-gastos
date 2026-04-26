@@ -1,7 +1,4 @@
-import {
-  EnvironmentProviders,
-  makeEnvironmentProviders,
-} from '@angular/core';
+import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { provideStore, provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { authReducer } from './lib/+state/auth/auth.reducer';
@@ -30,7 +27,7 @@ export * from './lib/guards/auth.guard';
 export * from './lib/models';
 
 export interface DataAccessOptions {
-  isRemote?: boolean;
+	isRemote?: boolean;
 }
 
 /**
@@ -40,29 +37,30 @@ export interface DataAccessOptions {
  * unless running in standalone mode.
  */
 export function provideDataAccess(
-  firebaseConfig: any,
-  options: DataAccessOptions = {}
+	firebaseConfig: any,
+	options: DataAccessOptions = {},
 ): EnvironmentProviders {
-  const providers: any[] = [
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideState('auth', authReducer),
-    provideState('transactions', transactionsReducer),
-    provideState(categoriesFeature),
-    provideState(budgetsFeature),
-    provideEffects(AuthEffects, TransactionsEffects, CategoriesEffects, BudgetsEffects),
-  ];
+	const providers: any[] = [];
 
-  // Only provide core infrastructure if not a remote or if specifically needed for standalone
-  if (!options.isRemote) {
-    providers.push(
-      provideFirebaseApp(() => {
-        // Safe initialization: check if apps already exist
-        return getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-      }),
-      provideStore()
-    );
-  }
+	if (!options.isRemote) {
+		providers.push(
+			provideFirebaseApp(() => {
+				return getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+			}),
+			provideStore({}),
+			provideEffects([]),
+		);
+	}
 
-  return makeEnvironmentProviders(providers);
+	providers.push(
+		provideAuth(() => getAuth()),
+		provideFirestore(() => getFirestore()),
+		provideState('auth', authReducer),
+		provideState('transactions', transactionsReducer),
+		provideState(categoriesFeature),
+		provideState(budgetsFeature),
+		provideEffects(AuthEffects, TransactionsEffects, CategoriesEffects, BudgetsEffects),
+	);
+
+	return makeEnvironmentProviders(providers);
 }

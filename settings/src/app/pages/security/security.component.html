@@ -1,0 +1,41 @@
+<ng-container *transloco="let t">
+	<lib-tracken-page-header
+		[title]="t('settings.account')"
+		[subtitle]="t('settings.securityDesc') || 'Proteja sua conta e altere sua senha'"
+	>
+		<div actions>
+			<lib-tracken-button
+				variant="ghost"
+				size="sm"
+				routerLink="/settings"
+			>
+				Voltar
+			</lib-tracken-button>
+			<lib-tracken-button
+				variant="primary"
+				size="sm"
+				(btnClick)="onSave()"
+				[loading]="loading()"
+				[disabled]="form.invalid || loading()"
+			>
+				{{ t('common.save') }}
+			</lib-tracken-button>
+		</div>
+	</lib-tracken-page-header>
+
+	<lib-tracken-card
+		[title]="t('settings.account') || 'Segurança'"
+		[formGroup]="form"
+	>
+		<lib-tracken-input
+			[label]="t('settings.currentPassword')"
+			formControlName="currentPassword"
+			type="password"
+		></lib-tracken-input>
+		<lib-tracken-input
+			[label]="t('settings.newPassword')"
+			formControlName="newPassword"
+			type="password"
+		></lib-tracken-input>
+	</lib-tracken-card>
+</ng-container>

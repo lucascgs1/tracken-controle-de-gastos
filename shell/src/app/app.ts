@@ -1,12 +1,12 @@
 import { Component, signal, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TrackenButton, LanguageService, Language } from '@tracken/shared';
+import { TrackenButton, TrackenDropdown, LanguageService, Language } from '@tracken/shared';
 import { AuthFacade } from '@tracken/data-access';
 import { AsyncPipe } from '@angular/common';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
-  imports: [RouterModule, TrackenButton, AsyncPipe, TranslocoDirective],
+  imports: [RouterModule, TrackenButton, TrackenDropdown, AsyncPipe, TranslocoDirective],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',

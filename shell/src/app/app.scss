@@ -60,6 +60,36 @@
           }
         }
       }
+      .user-trigger {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 2rem;
+        transition: background 0.2s;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+
+        .avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: $primary;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 0.875rem;
+        }
+
+        .material-icons {
+          font-size: 1.25rem;
+          color: var(--text-muted);
+        }
+      }
     }
   }
 

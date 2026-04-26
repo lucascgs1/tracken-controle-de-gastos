@@ -1,0 +1,19 @@
+<div class="dropdown-container">
+	<div
+		class="dropdown-trigger"
+		(click)="toggle()"
+	>
+		<ng-content select="[trigger]"></ng-content>
+	</div>
+
+	@if (isOpen()) {
+		<div
+			class="dropdown-menu-overlay"
+			(click)="close()"
+		>
+			<div class="dropdown-menu premium-card">
+				<ng-content select="[menu]"></ng-content>
+			</div>
+		</div>
+	}
+</div>

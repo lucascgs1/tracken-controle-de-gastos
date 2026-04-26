@@ -1,4 +1,4 @@
-import { Component, input, signal, forwardRef, ChangeDetectionStrategy, ChangeDetectorRef, inject, HostListener, computed } from '@angular/core';
+import { Component, input, signal, forwardRef, ChangeDetectionStrategy, ChangeDetectorRef, inject, HostListener, computed, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -44,11 +44,14 @@ export class TrackenSelect implements ControlValueAccessor {
   private onTouched: () => void = () => {
     // noop
   };
+  private elementRef = inject(ElementRef);
   private cdr = inject(ChangeDetectorRef);
 
-  @HostListener('document:click')
-  close() {
-    this.isOpen.set(false);
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isOpen.set(false);
+    }
   }
 
   toggle() {

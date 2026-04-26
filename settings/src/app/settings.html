@@ -1,4 +1,31 @@
-<div class="settings-container">
-	<h1>Settings</h1>
-	<p>Configurações do sistema Tracken</p>
-</div>
+<lib-tracken-page
+	[maxWidth]="1000"
+	*transloco="let t"
+>
+	@if (isHome()) {
+		<lib-tracken-page-header
+			[title]="t('settings.title')"
+			[subtitle]="t('settings.subtitle')"
+		></lib-tracken-page-header>
+
+		<div class="menu-grid">
+			@for (item of menuItems; track item.id) {
+				<a
+					[routerLink]="item.route"
+					class="menu-card"
+				>
+					<div class="icon-wrapper">
+						<span class="material-icons">{{ item.icon }}</span>
+					</div>
+					<div class="content">
+						<h3>{{ t(item.titleKey) }}</h3>
+						<p>{{ t(item.descriptionKey) }}</p>
+					</div>
+					<div class="arrow">→</div>
+				</a>
+			}
+		</div>
+	} @else {
+		<router-outlet></router-outlet>
+	}
+</lib-tracken-page>
