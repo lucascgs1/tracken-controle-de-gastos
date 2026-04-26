@@ -6,6 +6,7 @@
 		"start": "node scripts/validate-env.js && node scripts/generate-env.js && nx serve shell",
 		"build": "node scripts/validate-env.js && node scripts/generate-env.js && nx run-many -t build",
 		"test": "nx run-many -t test",
+		"test:coverage": "nx run-many -t test --coverage",
 		"lint": "nx run-many -t lint",
 		"format": "nx format:write",
 		"format:check": "nx format:check",

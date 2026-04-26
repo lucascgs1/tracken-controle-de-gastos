@@ -24,5 +24,10 @@ export default defineConfig(() => ({
 			reportsDirectory: '../coverage/settings',
 			provider: 'v8' as const,
 		},
+		server: {
+			deps: {
+				inline: ['rxfire', 'firebase', '@angular/fire'],
+			},
+		},
 	},
 }));
