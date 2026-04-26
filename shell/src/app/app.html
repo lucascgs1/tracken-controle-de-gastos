@@ -24,12 +24,12 @@
 				(btnClick)="toggleTheme()"
 				variant="secondary"
 				size="sm"
-				[icon]="isDarkMode() ? 'light_mode' : 'dark_mode'"
 			>
+				<span class="material-icons">{{ isDarkMode() ? 'light_mode' : 'dark_mode' }}</span>
 				{{ t('common.theme') }}
 			</lib-tracken-button>
 
-			@if (user$ | async; as user) {
+			@if (user(); as user) {
 			<lib-tracken-button
 				variant="ghost"
 				size="sm"
@@ -43,7 +43,7 @@
 					trigger
 					class="user-trigger"
 				>
-					<div class="avatar">{{ user.email[0].toUpperCase() }}</div>
+					<div class="avatar">{{ user.email | initials }}</div>
 					<span class="material-icons">expand_more</span>
 				</div>
 				<div menu>
@@ -65,3 +65,5 @@
 		<router-outlet></router-outlet>
 	</main>
 </div>
+
+<lib-tracken-toast-container></lib-tracken-toast-container>

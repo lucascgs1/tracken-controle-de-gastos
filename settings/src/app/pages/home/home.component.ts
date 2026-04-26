@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TrackenPageHeader, TrackenCard } from '@tracken/shared';
@@ -10,6 +10,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 	imports: [CommonModule, RouterModule, TrackenPageHeader, TrackenCard, TranslocoDirective],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsHomeComponent {
 	menuItems = [

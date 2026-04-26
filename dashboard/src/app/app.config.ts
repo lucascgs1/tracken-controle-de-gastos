@@ -7,11 +7,11 @@ import { provideTrackenTransloco } from '@tracken/shared';
 import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appRoutes),
-    provideDataAccess(environment.firebase),
-    provideHttpClient(),
-    provideTrackenTransloco(),
-  ],
+	providers: [
+		provideZoneChangeDetection({ eventCoalescing: true }),
+		provideRouter(appRoutes),
+		provideDataAccess(environment.firebase),
+		provideHttpClient(),
+		provideTrackenTransloco(),
+	],
 };

@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 
 export interface SelectOption {
 	label: string;
@@ -21,7 +22,7 @@ export interface SelectOption {
 @Component({
 	selector: 'lib-tracken-select',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, ClickOutsideDirective],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -58,17 +59,14 @@ export class TrackenSelect implements ControlValueAccessor {
 	private elementRef = inject(ElementRef);
 	private cdr = inject(ChangeDetectorRef);
 
-	@HostListener('document:click', ['$event'])
-	onDocumentClick(event: MouseEvent) {
-		if (!this.elementRef.nativeElement.contains(event.target)) {
-			this.isOpen.set(false);
-		}
-	}
-
 	toggle() {
 		if (!this.disabled()) {
 			this.isOpen.update((v) => !v);
 		}
+	}
+
+	close() {
+		this.isOpen.set(false);
 	}
 
 	selectOption(option: SelectOption) {

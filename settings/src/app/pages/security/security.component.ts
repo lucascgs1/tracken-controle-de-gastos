@@ -1,14 +1,23 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import {
+	ReactiveFormsModule,
+	NonNullableFormBuilder,
+	Validators,
+	AbstractControl,
+	ValidationErrors,
+} from '@angular/forms';
 import { TrackenPageHeader, TrackenCard, TrackenInput, TrackenButton } from '@tracken/shared';
+import { AuthFacade } from '@tracken/data-access';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	standalone: true,
 	selector: 'app-security-settings',
 	templateUrl: './security.component.html',
+	styleUrl: './security.component.scss',
 	imports: [
 		CommonModule,
 		RouterModule,
@@ -19,26 +28,39 @@ import { TranslocoDirective } from '@jsverse/transloco';
 		TrackenButton,
 		TranslocoDirective,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SecuritySettingsComponent {
-	private fb = inject(FormBuilder);
+	private fb = inject(NonNullableFormBuilder);
+	private authFacade = inject(AuthFacade);
 
-	form = this.fb.group({
-		currentPassword: [''],
-		newPassword: [''],
-	});
+	// Formulário fortemente tipado e não-nulo
+	form = this.fb.group(
+		{
+			currentPassword: ['', [Validators.required]],
+			newPassword: ['', [Validators.required, Validators.minLength(6)]],
+			confirmPassword: ['', [Validators.required]],
+		},
+		{ validators: this.passwordMatchValidator },
+	);
 
-	loading = signal(false);
+	// Reatividade baseada em Signals vinculada ao estado global
+	loading = toSignal(this.authFacade.loading$, { initialValue: false });
+
+	private passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+		const newPassword = control.get('newPassword')?.value;
+		const confirmPassword = control.get('confirmPassword')?.value;
+
+		return newPassword === confirmPassword ? null : { passwordMismatch: true };
+	}
 
 	onSave() {
 		if (this.form.valid) {
-			this.loading.set(true);
-			console.log('Saving security...', this.form.value);
+			const { newPassword } = this.form.getRawValue();
+			this.authFacade.updatePassword(newPassword);
 
-			setTimeout(() => {
-				this.loading.set(false);
-				alert('Senha alterada com sucesso!');
-			}, 1000);
+			// Resetar após sucesso - aqui poderíamos ouvir o sucesso via Actions ou Effect
+			// Por simplicidade na demo, mantemos a ação de salvar
 		}
 	}
 }

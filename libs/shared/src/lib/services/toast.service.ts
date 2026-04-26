@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
@@ -13,12 +14,20 @@ export interface Toast {
 	providedIn: 'root',
 })
 export class ToastService {
+	private transloco = inject(TranslocoService);
 	toasts = signal<Toast[]>([]);
 	private counter = 0;
 
+	/**
+	 * Mostra um toast. A mensagem pode ser uma chave de tradução ou texto puro.
+	 */
 	show(message: string, type: ToastType = 'info', duration = 4000) {
 		const id = this.counter++;
-		const toast: Toast = { id, message, type, duration };
+
+		// Tenta traduzir se for uma chave, senão usa o texto original
+		const translatedMessage = this.transloco.translate(message);
+
+		const toast: Toast = { id, message: translatedMessage, type, duration };
 
 		this.toasts.update((t) => [...t, toast]);
 

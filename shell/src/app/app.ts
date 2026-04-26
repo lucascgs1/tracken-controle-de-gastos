@@ -7,92 +7,26 @@ import {
 	LanguageService,
 	Language,
 	ThemeService,
+	InitialsPipe,
 } from '@tracken/shared';
 import { AuthFacade } from '@tracken/data-access';
-import { AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
+	standalone: true,
+	selector: 'app-root',
 	imports: [
+		CommonModule,
 		RouterModule,
 		TrackenButton,
 		TrackenDropdown,
 		TrackenToastContainer,
-		AsyncPipe,
 		TranslocoDirective,
+		InitialsPipe,
 	],
-	selector: 'app-root',
-	template: `
-		<div
-			class="shell-container"
-			*transloco="let t"
-		>
-			<header>
-				<h1>Tracken</h1>
-				<nav>
-					<div class="lang-selector">
-						<button
-							[class.active]="langService.getActiveLang() === 'en'"
-							(click)="setLanguage('en')"
-						>
-							EN
-						</button>
-						<button
-							[class.active]="langService.getActiveLang() === 'pt'"
-							(click)="setLanguage('pt')"
-						>
-							PT
-						</button>
-					</div>
-
-					<lib-tracken-button
-						(btnClick)="toggleTheme()"
-						variant="secondary"
-						size="sm"
-						[icon]="isDarkMode() ? 'light_mode' : 'dark_mode'"
-					>
-						{{ t('common.theme') }}
-					</lib-tracken-button>
-
-					@if (user$ | async; as user) {
-						<lib-tracken-button
-							variant="ghost"
-							size="sm"
-							routerLink="/dashboard"
-						>
-							{{ t('common.dashboard') }}
-						</lib-tracken-button>
-
-						<lib-tracken-dropdown>
-							<div
-								trigger
-								class="user-trigger"
-							>
-								<div class="avatar">{{ user.email[0].toUpperCase() }}</div>
-								<span class="material-icons">expand_more</span>
-							</div>
-							<div menu>
-								<a routerLink="/settings">
-									<span class="material-icons">settings</span>
-									{{ t('common.settings') }}
-								</a>
-								<button (click)="onLogout()">
-									<span class="material-icons">logout</span>
-									{{ t('common.logout') }}
-								</button>
-							</div>
-						</lib-tracken-dropdown>
-					}
-				</nav>
-			</header>
-
-			<main>
-				<router-outlet></router-outlet>
-			</main>
-		</div>
-
-		<lib-tracken-toast-container></lib-tracken-toast-container>
-	`,
+	templateUrl: './app.html',
 	styleUrl: './app.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -101,7 +35,8 @@ export class App {
 	public langService = inject(LanguageService);
 	public themeService = inject(ThemeService);
 
-	user$ = this.authFacade.user$;
+	// Reatividade fina com Signals
+	user = toSignal(this.authFacade.user$);
 	isDarkMode = computed(() => this.themeService.theme() === 'dark');
 
 	toggleTheme() {

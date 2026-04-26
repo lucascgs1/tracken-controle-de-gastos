@@ -8,7 +8,8 @@
 		"seed": "Gerar Dados Demo",
 		"save": "Salvar",
 		"saveSuccess": "Alterações salvas com sucesso!",
-		"cancel": "Cancelar"
+		"cancel": "Cancelar",
+		"error": "Ocorreu um erro. Por favor, tente novamente."
 	},
 	"dashboard": {
 		"balance": "Saldo Total",
@@ -49,6 +50,8 @@
 		"profileDesc": "Gerencie suas informações pessoais e dados de contato",
 		"appearanceDesc": "Customize temas, idiomas e preferências visuais",
 		"securityDesc": "Atualize sua senha e gerencie a segurança da conta",
+		"confirmPassword": "Confirmar Nova Senha",
+		"passwordChanged": "Senha alterada com sucesso!",
 		"customization": "Customização",
 		"profileInfo": "Informações Pessoais"
 	}

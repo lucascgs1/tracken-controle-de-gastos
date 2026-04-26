@@ -5,16 +5,16 @@ import { BudgetsActions } from './budgets.actions';
 
 @Injectable({ providedIn: 'root' })
 export class BudgetsFacade {
-  private store = inject(Store);
+	private store = inject(Store);
 
-  loaded$ = this.store.select(budgetsFeature.selectLoaded);
-  
-  // Use adapter selectors with feature state
-  allBudgets$ = this.store.select(
-    budgetsAdapter.getSelectors(budgetsFeature.selectBudgetsState).selectAll
-  );
+	loaded$ = this.store.select(budgetsFeature.selectLoaded);
 
-  loadBudgets() {
-    this.store.dispatch(BudgetsActions.loadBudgets());
-  }
+	// Use adapter selectors with feature state
+	allBudgets$ = this.store.select(
+		budgetsAdapter.getSelectors(budgetsFeature.selectBudgetsState).selectAll,
+	);
+
+	loadBudgets() {
+		this.store.dispatch(BudgetsActions.loadBudgets());
+	}
 }

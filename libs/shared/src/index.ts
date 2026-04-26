@@ -9,10 +9,17 @@ export * from './lib/components/ui/page-header/page-header.component';
 export * from './lib/components/ui/dropdown/dropdown.component';
 export * from './lib/components/ui/page/page.component';
 export * from './lib/components/ui/toast/toast.component';
+export * from './lib/components/ui/badge/badge.component';
+export * from './lib/components/ui/skeleton/skeleton.component';
+export * from './lib/components/ui/segmented-control/segmented-control.component';
 
 // Services
+export * from './lib/services/toast.service';
 export * from './lib/services/language.service';
 export * from './lib/services/theme.service';
-export * from './lib/services/toast.service';
+
+export * from './lib/directives/click-outside.directive';
+export * from './lib/directives/glassmorphism.directive';
+export * from './lib/pipes/initials.pipe';
 export * from './lib/services/transloco-config';
 export * from './lib/services/transloco-loader';

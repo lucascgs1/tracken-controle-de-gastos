@@ -5,16 +5,16 @@ import { CategoriesActions } from './categories.actions';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesFacade {
-  private store = inject(Store);
+	private store = inject(Store);
 
-  loaded$ = this.store.select(categoriesFeature.selectLoaded);
-  
-  // Use adapter selectors with feature state
-  allCategories$ = this.store.select(
-    categoriesAdapter.getSelectors(categoriesFeature.selectCategoriesState).selectAll
-  );
+	loaded$ = this.store.select(categoriesFeature.selectLoaded);
 
-  loadCategories() {
-    this.store.dispatch(CategoriesActions.loadCategories());
-  }
+	// Use adapter selectors with feature state
+	allCategories$ = this.store.select(
+		categoriesAdapter.getSelectors(categoriesFeature.selectCategoriesState).selectAll,
+	);
+
+	loadCategories() {
+		this.store.dispatch(CategoriesActions.loadCategories());
+	}
 }

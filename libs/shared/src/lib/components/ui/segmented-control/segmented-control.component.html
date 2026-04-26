@@ -1,0 +1,22 @@
+<div
+	class="segmented-control"
+	[class.disabled]="disabled()"
+>
+	<div
+		class="selection-indicator"
+		[style.width.%]="100 / options().length"
+		[style.transform]="'translateX(' + selectedIndex() * 100 + '%)'"
+	></div>
+
+	@for (option of options(); track option.value; let i = $index) {
+		<button
+			type="button"
+			class="segment-button"
+			[class.active]="option.value === value()"
+			(click)="select(option.value)"
+			[disabled]="disabled()"
+		>
+			{{ option.label }}
+		</button>
+	}
+</div>

@@ -1,26 +1,26 @@
 {
-  "bundler": {
-    "name": "webpack"
-  },
-  "mfConfig": {
-    "name": "dashboard",
-    "exposes": {
-      "./Routes": "./src/app/integration/dashboard-integration.routes.ts"
-    }
-  },
-  "latestErrorEvent": {
-    "code": "BUILD-001",
-    "message": "Failed to find expose module. #BUILD-001\nargs: {\"exposeModules\":[{\"name\":\"./Routes\",\"module\":null,\"request\":\"./src/app/integration/dashboard-integration.routes.ts\"}],\"FEDERATION_WEBPACK_PATH\":\"C:\\\\Users\\\\Coutinho\\\\Desktop\\\\Codigo\\\\tracken\\\\node_modules\\\\.pnpm\\\\webpack@5.105.2_@swc+core@1_202ad098fafcbe1306e1efce18bfb0c5\\\\node_modules\\\\webpack\\\\lib\\\\index.js\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/build#build-001",
-    "args": {
-      "exposeModules": [
-        {
-          "name": "./Routes",
-          "module": null,
-          "request": "./src/app/integration/dashboard-integration.routes.ts"
-        }
-      ],
-      "FEDERATION_WEBPACK_PATH": "C:\\Users\\Coutinho\\Desktop\\Codigo\\tracken\\node_modules\\.pnpm\\webpack@5.105.2_@swc+core@1_202ad098fafcbe1306e1efce18bfb0c5\\node_modules\\webpack\\lib\\index.js"
-    },
-    "timestamp": 1777072674315
-  }
+	"bundler": {
+		"name": "webpack"
+	},
+	"mfConfig": {
+		"name": "dashboard",
+		"exposes": {
+			"./Routes": "./src/app/integration/dashboard-integration.routes.ts"
+		}
+	},
+	"latestErrorEvent": {
+		"code": "BUILD-001",
+		"message": "Failed to find expose module. #BUILD-001\nargs: {\"exposeModules\":[{\"name\":\"./Routes\",\"module\":null,\"request\":\"./src/app/integration/dashboard-integration.routes.ts\"}],\"FEDERATION_WEBPACK_PATH\":\"C:\\\\Users\\\\Coutinho\\\\Desktop\\\\Codigo\\\\tracken\\\\node_modules\\\\.pnpm\\\\webpack@5.105.2_@swc+core@1_202ad098fafcbe1306e1efce18bfb0c5\\\\node_modules\\\\webpack\\\\lib\\\\index.js\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/build#build-001",
+		"args": {
+			"exposeModules": [
+				{
+					"name": "./Routes",
+					"module": null,
+					"request": "./src/app/integration/dashboard-integration.routes.ts"
+				}
+			],
+			"FEDERATION_WEBPACK_PATH": "C:\\Users\\Coutinho\\Desktop\\Codigo\\tracken\\node_modules\\.pnpm\\webpack@5.105.2_@swc+core@1_202ad098fafcbe1306e1efce18bfb0c5\\node_modules\\webpack\\lib\\index.js"
+		},
+		"timestamp": 1777072674315
+	}
 }

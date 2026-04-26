@@ -2,6 +2,7 @@
 	class="input-container"
 	[class.has-error]="error()"
 	tabindex="-1"
+	(libClickOutside)="close()"
 >
 	@if (label()) {
 		<label [for]="inputId()">{{ label() }}</label>

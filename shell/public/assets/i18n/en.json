@@ -8,7 +8,8 @@
 		"seed": "Seed Demo Data",
 		"save": "Save",
 		"saveSuccess": "Changes saved successfully!",
-		"cancel": "Cancel"
+		"cancel": "Cancel",
+		"error": "An error occurred. Please try again."
 	},
 	"dashboard": {
 		"balance": "Total Balance",
@@ -49,6 +50,8 @@
 		"profileDesc": "Manage your personal information and contact details",
 		"appearanceDesc": "Customize themes, languages, and visual preferences",
 		"securityDesc": "Update your password and manage account security",
+		"confirmPassword": "Confirm New Password",
+		"passwordChanged": "Password changed successfully!",
 		"customization": "Customization",
 		"profileInfo": "Personal Information"
 	}
