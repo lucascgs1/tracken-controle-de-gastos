@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TrackenPageHeader, TrackenCard, TrackenPage } from '@tracken/shared';
+import { TrackenPageHeader, TrackenPage } from '@tracken/shared';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { SettingsService } from './services/settings.service';
 
@@ -15,7 +15,6 @@ import { SettingsService } from './services/settings.service';
 		RouterOutlet,
 		RouterModule,
 		TrackenPageHeader,
-		TrackenCard,
 		TrackenPage,
 		TranslocoDirective,
 	],

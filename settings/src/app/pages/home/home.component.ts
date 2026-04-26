@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TrackenPageHeader, TrackenCard } from '@tracken/shared';
+import { TrackenPageHeader } from '@tracken/shared';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
@@ -9,7 +9,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 	selector: 'app-settings-home',
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
-	imports: [CommonModule, RouterModule, TrackenPageHeader, TrackenCard, TranslocoDirective],
+	imports: [CommonModule, RouterModule, TrackenPageHeader, TranslocoDirective],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsHomeComponent {
