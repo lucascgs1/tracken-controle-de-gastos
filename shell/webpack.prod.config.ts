@@ -7,18 +7,12 @@ import config from './module-federation.config';
  * Learn more about the DTS Plugin here: https://module-federation.io/configure/dts.html
  */
 export default withModuleFederation(
-  {
-    ...config,
-    /*
-     * Remote overrides for production.
-     * Each entry is a pair of a unique name and the URL where it is deployed.
-     *
-     * e.g.
-     * remotes: [
-     *   ['app1', 'https://app1.example.com'],
-     *   ['app2', 'https://app2.example.com'],
-     * ]
-     */
-  },
-  { dts: false },
+	{
+		...config,
+		remotes: [
+			['dashboard', 'dashboard/remoteEntry.mjs'],
+			['settings', 'settings/remoteEntry.mjs'],
+		],
+	},
+	{ dts: false },
 );
