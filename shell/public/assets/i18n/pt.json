@@ -10,7 +10,8 @@
 		"saveSuccess": "Alterações salvas com sucesso!",
 		"cancel": "Cancelar",
 		"error": "Ocorreu um erro. Por favor, tente novamente.",
-		"unexpectedError": "Ocorreu um erro inesperado. Tente novamente."
+		"unexpectedError": "Ocorreu um erro inesperado. Tente novamente.",
+		"back": "Voltar"
 	},
 	"errors": {
 		"unauthorized": "Sessão expirada. Faça login novamente.",
@@ -79,8 +80,5 @@
 		"customization": "Customização",
 		"customizationDesc": "Gerencie as configurações específicas da plataforma",
 		"profileInfo": "Informações Pessoais"
-	},
-	"common": {
-		"back": "Voltar"
 	}
 }

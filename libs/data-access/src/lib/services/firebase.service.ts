@@ -1,19 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import {
-	Firestore,
-	collection,
-	collectionData,
-	doc,
-	setDoc,
-	query,
-	where,
-} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
 import {
 	Auth,
 	user,
 	signInWithEmailAndPassword,
 	signOut,
-	createUserWithEmailAndPassword,
 	updatePassword,
 } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
@@ -50,7 +41,7 @@ export class FirebaseService {
 		return collectionData(col, { idField: 'id' }) as Observable<T[]>;
 	}
 
-	async setDocument(path: string, id: string, data: any) {
+	async setDocument(path: string, id: string, data: Record<string, unknown>) {
 		const docRef = doc(this.firestore, path, id);
 		return setDoc(docRef, data, { merge: true });
 	}

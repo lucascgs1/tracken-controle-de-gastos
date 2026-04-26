@@ -10,7 +10,8 @@
 		"saveSuccess": "Changes saved successfully!",
 		"cancel": "Cancel",
 		"error": "An error occurred. Please try again.",
-		"unexpectedError": "An unexpected error occurred. Please try again."
+		"unexpectedError": "An unexpected error occurred. Please try again.",
+		"back": "Back"
 	},
 	"errors": {
 		"unauthorized": "Session expired. Please log in again.",
@@ -79,8 +80,5 @@
 		"customization": "Customization",
 		"customizationDesc": "Manage your platform specific configurations",
 		"profileInfo": "Personal Information"
-	},
-	"common": {
-		"back": "Back"
 	}
 }

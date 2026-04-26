@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { FirebaseService } from '../../services/firebase.service';
 import { AuthActions } from './auth.actions';
-import { catchError, map, switchMap, tap, from, of } from 'rxjs';
+import { catchError, map, switchMap, tap, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastService } from '@tracken/shared';
 import { AuthUser } from './auth.actions';
