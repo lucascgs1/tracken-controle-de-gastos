@@ -39,7 +39,7 @@ export class FirebaseService {
 	updatePassword(newPassword: string): Observable<void> {
 		const currentUser = this.auth.currentUser;
 		if (!currentUser) {
-			throw new Error('No user logged in');
+			throw new Error('errors.noUser');
 		}
 		return from(updatePassword(currentUser, newPassword));
 	}

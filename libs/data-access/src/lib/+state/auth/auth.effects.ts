@@ -4,12 +4,15 @@ import { FirebaseService } from '../../services/firebase.service';
 import { AuthActions } from './auth.actions';
 import { catchError, map, switchMap, tap, from, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastService } from '@tracken/shared';
+import { AuthUser } from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
 	private actions$ = inject(Actions);
 	private fb = inject(FirebaseService);
 	private router = inject(Router);
+	private toast = inject(ToastService);
 
 	// MOCK: Always return success for login
 	login$ = createEffect(() =>
@@ -18,7 +21,12 @@ export class AuthEffects {
 			switchMap(() =>
 				of(
 					AuthActions.loginSuccess({
-						user: { uid: 'demo-user', email: 'demo@tracken.com', displayName: 'Demo User' } as any,
+						user: {
+							uid: 'demo-user',
+							email: 'demo@tracken.com',
+							displayName: 'Demo User',
+							photoURL: null,
+						} as AuthUser,
 					}),
 				),
 			),
@@ -46,7 +54,12 @@ export class AuthEffects {
 	checkAuth$ = createEffect(() =>
 		of(
 			AuthActions.authStateChanged({
-				user: { uid: 'demo-user', email: 'demo@tracken.com', displayName: 'Demo User' } as any,
+				user: {
+					uid: 'demo-user',
+					email: 'demo@tracken.com',
+					displayName: 'Demo User',
+					photoURL: null,
+				} as AuthUser,
 			}),
 		).pipe(
 			tap(() => {
@@ -74,8 +87,18 @@ export class AuthEffects {
 			this.actions$.pipe(
 				ofType(AuthActions.updatePasswordSuccess),
 				tap(() => {
-					// Here we could inject ToastService, but effects should ideally not touch UI directly
-					// unless they use a service.
+					this.toast.show('settings.passwordChanged', 'success');
+				}),
+			),
+		{ dispatch: false },
+	);
+
+	updatePasswordFailure$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.updatePasswordFailure),
+				tap(({ error }) => {
+					this.toast.show(error, 'error');
 				}),
 			),
 		{ dispatch: false },

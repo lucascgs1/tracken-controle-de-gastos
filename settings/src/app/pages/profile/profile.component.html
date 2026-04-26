@@ -10,7 +10,7 @@
 				size="sm"
 				routerLink="/settings"
 			>
-				{{ t('common.back') || 'Back' }}
+				{{ t('common.back') }}
 			</lib-tracken-button>
 			<lib-tracken-button
 				variant="primary"
@@ -38,13 +38,13 @@
 				<lib-tracken-input
 					[label]="t('settings.firstName')"
 					formControlName="firstName"
-					placeholder="e.g. John"
+					[placeholder]="t('settings.firstName')"
 				></lib-tracken-input>
 
 				<lib-tracken-input
 					[label]="t('settings.lastName')"
 					formControlName="lastName"
-					placeholder="e.g. Doe"
+					[placeholder]="t('settings.lastName')"
 				></lib-tracken-input>
 
 				<lib-tracken-input

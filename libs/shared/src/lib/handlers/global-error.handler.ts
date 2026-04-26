@@ -15,8 +15,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 
 		// Garante que o toast rode dentro da zona do Angular para atualizar a UI
 		this.zone.run(() => {
-			const message =
-				error instanceof Error ? error.message : 'Ocorreu um erro inesperado. Tente novamente.';
+			const message = error instanceof Error ? error.message : 'common.unexpectedError';
 			toast.show(message, 'error');
 		});
 	}

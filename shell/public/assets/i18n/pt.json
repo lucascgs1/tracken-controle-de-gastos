@@ -9,7 +9,16 @@
 		"save": "Salvar",
 		"saveSuccess": "Alterações salvas com sucesso!",
 		"cancel": "Cancelar",
-		"error": "Ocorreu um erro. Por favor, tente novamente."
+		"error": "Ocorreu um erro. Por favor, tente novamente.",
+		"unexpectedError": "Ocorreu um erro inesperado. Tente novamente."
+	},
+	"errors": {
+		"unauthorized": "Sessão expirada. Faça login novamente.",
+		"forbidden": "Você não tem permissão para realizar esta ação.",
+		"notFound": "Recurso não encontrado.",
+		"internal": "Erro interno no servidor.",
+		"network": "Erro na comunicação com o servidor.",
+		"noUser": "Nenhum usuário logado."
 	},
 	"dashboard": {
 		"balance": "Saldo Total",
@@ -20,7 +29,8 @@
 		"recent": "Transações Recentes",
 		"noTransactions": "Nenhuma transação encontrada.",
 		"noBudgets": "Nenhum orçamento definido este mês.",
-		"noBudgetsDesc": "Defina seus limites mensais para manter o controle."
+		"noBudgetsDesc": "Defina seus limites mensais para manter o controle.",
+		"noTransactionsDesc": "Comece adicionando sua primeira transação para ver estatísticas."
 	},
 	"login": {
 		"subtitle": "Sua jornada financeira começa aqui.",
@@ -36,6 +46,12 @@
 		"selectCat": "Selecione uma categoria",
 		"expense": "Despesa",
 		"income": "Receita"
+	},
+	"validation": {
+		"email": "Endereço de e-mail inválido",
+		"passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+		"required": "Este campo é obrigatório",
+		"passwordMismatch": "As senhas não coincidem"
 	},
 	"settings": {
 		"title": "Configurações",
@@ -55,8 +71,16 @@
 		"securityDesc": "Atualize sua senha e gerencie a segurança da conta",
 		"confirmPassword": "Confirmar Nova Senha",
 		"passwordChanged": "Senha alterada com sucesso!",
+		"profileUpdated": "Perfil atualizado com sucesso!",
+		"changePassword": "Alterar Senha",
+		"twoFactor": "Autenticação em Dois Fatores",
+		"twoFactorDesc": "Adicione uma camada extra de segurança à sua conta.",
+		"enable": "Ativar",
 		"customization": "Customização",
 		"customizationDesc": "Gerencie as configurações específicas da plataforma",
 		"profileInfo": "Informações Pessoais"
+	},
+	"common": {
+		"back": "Voltar"
 	}
 }

@@ -16,7 +16,7 @@
 				formControlName="email"
 				[label]="t('login.email')"
 				placeholder="admin@tracken.com"
-				[error]="loginForm.controls.email.touched && loginForm.controls.email.invalid ? 'Invalid email' : null"
+				[error]="loginForm.controls.email.touched && loginForm.controls.email.invalid ? t('validation.email') : null"
 			></lib-tracken-input>
 
 			<lib-tracken-input
@@ -24,11 +24,11 @@
 				type="password"
 				[label]="t('login.password')"
 				placeholder="••••••••"
-				[error]="loginForm.controls.password.touched && loginForm.controls.password.invalid ? 'Password too short' : null"
+				[error]="loginForm.controls.password.touched && loginForm.controls.password.invalid ? t('validation.passwordMinLength') : null"
 			></lib-tracken-input>
 
 			@if (error$ | async; as error) {
-			<div class="error-message">{{ error }}</div>
+			<div class="error-message">{{ t(error) }}</div>
 			}
 
 			<div class="auth-actions">

@@ -5,6 +5,11 @@ import { TransactionsActions } from './transactions.actions';
 import * as TransactionsSelectors from './transactions.selectors';
 import { Transaction } from '../../models';
 
+export interface CategoryTotal {
+	name: string;
+	value: number;
+}
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -25,7 +30,7 @@ export class TransactionsFacade {
 	totalBalance = toSignal(this.totalBalance$, { initialValue: 0 });
 	incomeTotal = toSignal(this.incomeTotal$, { initialValue: 0 });
 	expenseTotal = toSignal(this.expenseTotal$, { initialValue: 0 });
-	categoryTotals = toSignal(this.categoryTotals$, { initialValue: [] as any[] });
+	categoryTotals = toSignal(this.categoryTotals$, { initialValue: [] as CategoryTotal[] });
 
 	loadTransactions() {
 		this.store.dispatch(TransactionsActions.loadTransactions());

@@ -51,10 +51,7 @@ describe('GlobalErrorHandler', () => {
 
 	it('should show default error toast for unknown error types', () => {
 		handler.handleError('Something went wrong');
-		expect(toastServiceMock.show).toHaveBeenCalledWith(
-			'Ocorreu um erro inesperado. Tente novamente.',
-			'error',
-		);
+		expect(toastServiceMock.show).toHaveBeenCalledWith('common.unexpectedError', 'error');
 	});
 
 	it('should run toast within NgZone', () => {

@@ -4,12 +4,13 @@ Tracken is a production-grade fintech application built with Angular, Nx, and Mi
 
 ## 🚀 Features
 
-- **Microfrontend Architecture**: Shell + Dashboard Remote using Module Federation.
-- **State Management**: NgRx with Store, Effects, Entity, and Facade pattern.
+- **Microfrontend Architecture**: Shell + Dashboard + Settings remotes using Module Federation.
+- **State Management**: NgRx with Signal-based Facades for high-performance UI updates.
+- **Internationalization (i18n)**: Full support for English and Portuguese with dynamic switching.
 - **Backend**: Firebase (Authentication & Firestore).
-- **Premium UI**: Modern dark mode design using vanilla SCSS.
-- **Reusability**: Shared UI library with premium components.
-- **Seed System**: Automatic data seeding for new users and Demo Mode.
+- **Premium UI**: Modern, glassmorphism-inspired design with dark/light/midnight modes.
+- **Error Handling**: Global error interceptors and user-friendly toast feedback.
+- **Testing**: Robust suite with >90% coverage using Vitest.
 
 ## 🛠️ Tech Stack
 
@@ -65,7 +66,13 @@ The app will be available at `http://localhost:4200`.
 
 ## 🧪 Testing
 
+The platform maintains a high quality bar with over **90% unit test coverage**.
+
 ```bash
-pnpm exec nx test shell
+# Run all tests with coverage report
+pnpm run test:coverage
+
+# Run specific project tests
 pnpm exec nx test shared
+pnpm exec nx test settings
 ```

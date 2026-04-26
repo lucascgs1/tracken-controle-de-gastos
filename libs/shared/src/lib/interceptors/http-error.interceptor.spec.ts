@@ -41,10 +41,7 @@ describe('httpErrorInterceptor', () => {
 		const req = httpMock.expectOne('/test');
 		req.flush('Unauthorized', { status: 401, statusText: 'Unauthorized' });
 
-		expect(toastServiceMock.show).toHaveBeenCalledWith(
-			'Sessão expirada. Faça login novamente.',
-			'error',
-		);
+		expect(toastServiceMock.show).toHaveBeenCalledWith('errors.unauthorized', 'error');
 	});
 
 	it('should show toast message for 403 error', () => {
@@ -57,10 +54,7 @@ describe('httpErrorInterceptor', () => {
 		const req = httpMock.expectOne('/test');
 		req.flush('Forbidden', { status: 403, statusText: 'Forbidden' });
 
-		expect(toastServiceMock.show).toHaveBeenCalledWith(
-			'Você não tem permissão para realizar esta ação.',
-			'error',
-		);
+		expect(toastServiceMock.show).toHaveBeenCalledWith('errors.forbidden', 'error');
 	});
 
 	it('should show toast message for 500 error', () => {
@@ -73,7 +67,7 @@ describe('httpErrorInterceptor', () => {
 		const req = httpMock.expectOne('/test');
 		req.flush('Internal Server Error', { status: 500, statusText: 'Server Error' });
 
-		expect(toastServiceMock.show).toHaveBeenCalledWith('Erro interno no servidor.', 'error');
+		expect(toastServiceMock.show).toHaveBeenCalledWith('errors.internal', 'error');
 	});
 
 	it('should use error message from body if available', () => {
@@ -99,9 +93,6 @@ describe('httpErrorInterceptor', () => {
 		const req = httpMock.expectOne('/test');
 		req.flush('Unknown Error', { status: 418, statusText: "I'm a teapot" });
 
-		expect(toastServiceMock.show).toHaveBeenCalledWith(
-			'Erro na comunicação com o servidor.',
-			'error',
-		);
+		expect(toastServiceMock.show).toHaveBeenCalledWith('errors.network', 'error');
 	});
 });

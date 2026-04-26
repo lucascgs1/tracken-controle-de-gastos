@@ -8,25 +8,25 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
 	return next(req).pipe(
 		catchError((error: HttpErrorResponse) => {
-			let errorMessage = 'Erro na comunicação com o servidor.';
+			let errorMessage = 'errors.network';
 
 			if (error.error instanceof ErrorEvent) {
-				// Erro do lado do cliente
-				errorMessage = `Erro: ${error.error.message}`;
+				// Client-side error
+				errorMessage = `errors.network`;
 			} else {
-				// Erro do lado do servidor (Firebase, etc)
+				// Server-side error
 				switch (error.status) {
 					case 401:
-						errorMessage = 'Sessão expirada. Faça login novamente.';
+						errorMessage = 'errors.unauthorized';
 						break;
 					case 403:
-						errorMessage = 'Você não tem permissão para realizar esta ação.';
+						errorMessage = 'errors.forbidden';
 						break;
 					case 404:
-						errorMessage = 'Recurso não encontrado.';
+						errorMessage = 'errors.notFound';
 						break;
 					case 500:
-						errorMessage = 'Erro interno no servidor.';
+						errorMessage = 'errors.internal';
 						break;
 					default:
 						errorMessage = error.error?.message || errorMessage;

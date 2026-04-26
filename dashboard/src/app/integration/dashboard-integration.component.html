@@ -58,9 +58,7 @@
 			<div class="budget-list">
 				<lib-tracken-empty-state
 					[title]="t('dashboard.noBudgets')"
-					[description]="
-						t('dashboard.noBudgetsDesc') || 'Configure um orçamento para controlar seus gastos'
-					"
+					[description]="t('dashboard.noBudgetsDesc')"
 					icon="account_balance_wallet"
 				></lib-tracken-empty-state>
 			</div>
@@ -85,7 +83,7 @@
 			} @else {
 				<lib-tracken-empty-state
 					[title]="t('dashboard.noTransactions')"
-					[description]="t('dashboard.noTransactionsDesc') || 'Suas estatísticas aparecerão aqui'"
+					[description]="t('dashboard.noTransactionsDesc')"
 					icon="pie_chart_outline"
 				></lib-tracken-empty-state>
 			}
@@ -115,10 +113,7 @@
 				} @empty {
 					<lib-tracken-empty-state
 						[title]="t('dashboard.noTransactions')"
-						[description]="
-							t('dashboard.noTransactionsDesc') || 'Comece adicionando sua primeira transação'
-						"
-						illustrationUrl="assets/images/empty-state.png"
+						[description]="t('dashboard.noTransactionsDesc')"
 						[actionLabel]="t('common.add')"
 						(actionClick)="onAddTransaction()"
 					></lib-tracken-empty-state>

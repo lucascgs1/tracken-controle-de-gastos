@@ -10,7 +10,7 @@
 				size="sm"
 				routerLink="/settings"
 			>
-				{{ t('common.back') || 'Back' }}
+				{{ t('common.back') }}
 			</lib-tracken-button>
 			<lib-tracken-button
 				variant="primary"
@@ -45,14 +45,24 @@
 					[label]="t('settings.newPassword')"
 					formControlName="newPassword"
 					type="password"
-					placeholder="Min. 6 characters"
+					[placeholder]="t('login.password')"
+					[error]="
+						form.controls.newPassword.touched && form.controls.newPassword.invalid
+							? t('validation.passwordMinLength')
+							: null
+					"
 				></lib-tracken-input>
 
 				<lib-tracken-input
 					[label]="t('settings.confirmPassword')"
 					formControlName="confirmPassword"
 					type="password"
-					placeholder="Repeat new password"
+					[placeholder]="t('login.password')"
+					[error]="
+						form.controls.confirmPassword.touched && form.errors?.['passwordMismatch']
+							? t('validation.passwordMismatch')
+							: null
+					"
 				></lib-tracken-input>
 			</div>
 		</lib-tracken-card>
@@ -66,16 +76,14 @@
 				<div class="info">
 					<span class="material-icons">security</span>
 					<p>
-						{{
-							t('settings.twoFactorDesc') || 'Adicione uma camada extra de segurança à sua conta.'
-						}}
+						{{ t('settings.twoFactorDesc') }}
 					</p>
 				</div>
 				<lib-tracken-button
 					variant="outline"
 					size="sm"
 				>
-					{{ t('settings.enable') || 'Enable' }}
+					{{ t('settings.enable') }}
 				</lib-tracken-button>
 			</div>
 		</lib-tracken-card>

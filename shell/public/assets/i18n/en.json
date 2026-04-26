@@ -9,7 +9,16 @@
 		"save": "Save",
 		"saveSuccess": "Changes saved successfully!",
 		"cancel": "Cancel",
-		"error": "An error occurred. Please try again."
+		"error": "An error occurred. Please try again.",
+		"unexpectedError": "An unexpected error occurred. Please try again."
+	},
+	"errors": {
+		"unauthorized": "Session expired. Please log in again.",
+		"forbidden": "You do not have permission to perform this action.",
+		"notFound": "Resource not found.",
+		"internal": "Internal server error.",
+		"network": "Communication error with the server.",
+		"noUser": "No user logged in."
 	},
 	"dashboard": {
 		"balance": "Total Balance",
@@ -20,7 +29,8 @@
 		"recent": "Recent Transactions",
 		"noTransactions": "No transactions found.",
 		"noBudgets": "No budgets set for this month.",
-		"noBudgetsDesc": "Set up your monthly limits to stay on track."
+		"noBudgetsDesc": "Set up your monthly limits to stay on track.",
+		"noTransactionsDesc": "Start adding your first transaction to see statistics."
 	},
 	"login": {
 		"subtitle": "Your financial journey starts here.",
@@ -36,6 +46,12 @@
 		"selectCat": "Select a category",
 		"expense": "Expense",
 		"income": "Income"
+	},
+	"validation": {
+		"email": "Invalid email address",
+		"passwordMinLength": "Password must be at least 6 characters",
+		"required": "This field is required",
+		"passwordMismatch": "Passwords do not match"
 	},
 	"settings": {
 		"title": "Settings",
@@ -55,8 +71,16 @@
 		"securityDesc": "Update your password and manage account security",
 		"confirmPassword": "Confirm New Password",
 		"passwordChanged": "Password changed successfully!",
+		"profileUpdated": "Profile updated successfully!",
+		"changePassword": "Change Password",
+		"twoFactor": "Two-Factor Authentication",
+		"twoFactorDesc": "Add an extra layer of security to your account.",
+		"enable": "Enable",
 		"customization": "Customization",
 		"customizationDesc": "Manage your platform specific configurations",
 		"profileInfo": "Personal Information"
+	},
+	"common": {
+		"back": "Back"
 	}
 }
