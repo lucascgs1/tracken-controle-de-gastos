@@ -2,6 +2,7 @@
 	<lib-tracken-page-header
 		[title]="t('settings.account')"
 		[subtitle]="t('settings.securityDesc')"
+		libTrackenAnimate="fade-in"
 	>
 		<div actions>
 			<lib-tracken-button
@@ -23,41 +24,60 @@
 		</div>
 	</lib-tracken-page-header>
 
-	<lib-tracken-card
-		[title]="t('settings.security')"
-		[formGroup]="form"
+	<div
+		class="security-grid"
+		libTrackenAnimate="slide-up"
+		[delay]="200"
 	>
-		<div class="settings-form-grid">
-			<lib-tracken-input
-				[label]="t('settings.currentPassword')"
-				formControlName="currentPassword"
-				type="password"
-				placeholder="••••••••"
-			></lib-tracken-input>
+		<lib-tracken-card
+			[title]="t('settings.changePassword')"
+			[formGroup]="form"
+		>
+			<div class="settings-form-grid">
+				<lib-tracken-input
+					[label]="t('settings.currentPassword')"
+					formControlName="currentPassword"
+					type="password"
+					placeholder="••••••••"
+				></lib-tracken-input>
 
-			<lib-tracken-input
-				[label]="t('settings.newPassword')"
-				formControlName="newPassword"
-				type="password"
-				placeholder="••••••••"
-				[error]="
-					form.controls.newPassword.touched && form.controls.newPassword.errors?.['minlength']
-						? 'Min 6 chars'
-						: null
-				"
-			></lib-tracken-input>
+				<lib-tracken-input
+					[label]="t('settings.newPassword')"
+					formControlName="newPassword"
+					type="password"
+					placeholder="Min. 6 characters"
+				></lib-tracken-input>
 
-			<lib-tracken-input
-				[label]="t('settings.confirmPassword')"
-				formControlName="confirmPassword"
-				type="password"
-				placeholder="••••••••"
-				[error]="
-					form.controls.confirmPassword.touched && form.errors?.['passwordMismatch']
-						? 'Passwords do not match'
-						: null
-				"
-			></lib-tracken-input>
-		</div>
-	</lib-tracken-card>
+				<lib-tracken-input
+					[label]="t('settings.confirmPassword')"
+					formControlName="confirmPassword"
+					type="password"
+					placeholder="Repeat new password"
+				></lib-tracken-input>
+			</div>
+		</lib-tracken-card>
+
+		<lib-tracken-card
+			[title]="t('settings.twoFactor')"
+			libTrackenAnimate="slide-up"
+			[delay]="400"
+		>
+			<div class="two-factor-content">
+				<div class="info">
+					<span class="material-icons">security</span>
+					<p>
+						{{
+							t('settings.twoFactorDesc') || 'Adicione uma camada extra de segurança à sua conta.'
+						}}
+					</p>
+				</div>
+				<lib-tracken-button
+					variant="outline"
+					size="sm"
+				>
+					{{ t('settings.enable') || 'Enable' }}
+				</lib-tracken-button>
+			</div>
+		</lib-tracken-card>
+	</div>
 </ng-container>

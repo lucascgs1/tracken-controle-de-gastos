@@ -2,7 +2,10 @@
 	class="dashboard"
 	*transloco="let t"
 >
-	<div class="summary-grid">
+	<div
+		class="summary-grid"
+		libTrackenAnimate="slide-up"
+	>
 		<lib-tracken-card class="summary-card">
 			<span class="label">{{ t('dashboard.balance') }}</span>
 			<h2
@@ -24,7 +27,11 @@
 		</lib-tracken-card>
 	</div>
 
-	<div class="actions">
+	<div
+		class="actions"
+		libTrackenAnimate="fade-in"
+		[delay]="300"
+	>
 		<lib-tracken-button
 			(btnClick)="onSeed()"
 			variant="outline"
@@ -45,16 +52,25 @@
 		<lib-tracken-card
 			class="budget-section"
 			[title]="t('dashboard.budget')"
+			libTrackenAnimate="slide-up"
+			[delay]="400"
 		>
 			<div class="budget-list">
-				<!-- Budgets list here -->
-				<div class="empty-state">{{ t('dashboard.noBudgets') }}</div>
+				<lib-tracken-empty-state
+					[title]="t('dashboard.noBudgets')"
+					[description]="
+						t('dashboard.noBudgetsDesc') || 'Configure um orçamento para controlar seus gastos'
+					"
+					icon="account_balance_wallet"
+				></lib-tracken-empty-state>
 			</div>
 		</lib-tracken-card>
 
 		<lib-tracken-card
 			class="chart-section"
 			[title]="t('dashboard.spending')"
+			libTrackenAnimate="slide-up"
+			[delay]="500"
 		>
 			@if (categoryTotals().length) {
 				<app-spending-chart [data]="categoryTotals()"></app-spending-chart>
@@ -67,7 +83,11 @@
 					></lib-tracken-skeleton>
 				</div>
 			} @else {
-				<div class="empty-state">{{ t('dashboard.noTransactions') }}</div>
+				<lib-tracken-empty-state
+					[title]="t('dashboard.noTransactions')"
+					[description]="t('dashboard.noTransactionsDesc') || 'Suas estatísticas aparecerão aqui'"
+					icon="pie_chart_outline"
+				></lib-tracken-empty-state>
 			}
 		</lib-tracken-card>
 	</div>
@@ -75,6 +95,8 @@
 	<lib-tracken-card
 		class="transactions-section"
 		[title]="t('dashboard.recent')"
+		libTrackenAnimate="slide-up"
+		[delay]="600"
 	>
 		@if (loaded()) {
 			<div class="transaction-list">
@@ -91,9 +113,15 @@
 						</div>
 					</div>
 				} @empty {
-					<div class="empty-state">
-						{{ t('dashboard.noTransactions') }}
-					</div>
+					<lib-tracken-empty-state
+						[title]="t('dashboard.noTransactions')"
+						[description]="
+							t('dashboard.noTransactionsDesc') || 'Comece adicionando sua primeira transação'
+						"
+						illustrationUrl="assets/images/empty-state.png"
+						[actionLabel]="t('common.add')"
+						(actionClick)="onAddTransaction()"
+					></lib-tracken-empty-state>
 				}
 			</div>
 		} @else {

@@ -1,9 +1,8 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection, ErrorHandler } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideDataAccess } from '@tracken/data-access';
-import { provideHttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import { provideTrackenTransloco } from '@tracken/shared';
+import { provideTrackenTransloco, GlobalErrorHandler, httpErrorInterceptor } from '@tracken/shared';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { settingsRoutes } from './settings.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -11,7 +10,8 @@ export const appConfig: ApplicationConfig = {
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(settingsRoutes),
 		provideDataAccess(environment.firebase),
-		provideHttpClient(),
+		provideHttpClient(withInterceptors([httpErrorInterceptor])),
 		provideTrackenTransloco(),
+		{ provide: ErrorHandler, useClass: GlobalErrorHandler },
 	],
 };

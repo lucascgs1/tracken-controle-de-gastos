@@ -7,12 +7,18 @@ import {
 	CategoriesFacade,
 	BudgetsFacade,
 } from '@tracken/data-access';
-import { TrackenButton, TrackenCard, TrackenBadge, TrackenSkeleton } from '@tracken/shared';
+import {
+	TrackenButton,
+	TrackenCard,
+	TrackenBadge,
+	TrackenSkeleton,
+	TrackenEmptyState,
+	TrackenAnimateDirective,
+} from '@tracken/shared';
 import { take } from 'rxjs';
 import { AddTransactionComponent } from '../components/add-transaction/add-transaction.component';
 import { SpendingChartComponent } from '../components/spending-chart/spending-chart.component';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	selector: 'app-dashboard-integration',
@@ -24,6 +30,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 		TrackenCard,
 		TrackenBadge,
 		TrackenSkeleton,
+		TrackenEmptyState,
+		TrackenAnimateDirective,
 		AddTransactionComponent,
 		SpendingChartComponent,
 		TranslocoDirective,
@@ -42,14 +50,14 @@ export class DashboardIntegrationComponent implements OnInit {
 	// Estado Local com Signals
 	showAddModal = signal(false);
 
-	// Conversão de Observables do Facade para Signals (Reatividade Fina)
-	transactions = toSignal(this.transactionsFacade.allTransactions$, { initialValue: [] });
-	loaded = toSignal(this.transactionsFacade.loaded$, { initialValue: false });
-	totalBalance = toSignal(this.transactionsFacade.totalBalance$, { initialValue: 0 });
-	incomeTotal = toSignal(this.transactionsFacade.incomeTotal$, { initialValue: 0 });
-	expenseTotal = toSignal(this.transactionsFacade.expenseTotal$, { initialValue: 0 });
-	categories = toSignal(this.categoriesFacade.allCategories$, { initialValue: [] });
-	categoryTotals = toSignal(this.transactionsFacade.categoryTotals$, { initialValue: [] });
+	// Uso direto dos Signals expostos pelas Facades (Padrão Sênior)
+	transactions = this.transactionsFacade.allTransactions;
+	loaded = this.transactionsFacade.loaded;
+	totalBalance = this.transactionsFacade.totalBalance;
+	incomeTotal = this.transactionsFacade.incomeTotal;
+	expenseTotal = this.transactionsFacade.expenseTotal;
+	categories = this.categoriesFacade.allCategories;
+	categoryTotals = this.transactionsFacade.categoryTotals;
 
 	ngOnInit() {
 		this.transactionsFacade.loadTransactions();

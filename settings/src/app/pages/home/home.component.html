@@ -5,13 +5,20 @@
 	<lib-tracken-page-header
 		[title]="t('settings.title')"
 		[subtitle]="t('settings.subtitle')"
+		libTrackenAnimate="fade-in"
 	></lib-tracken-page-header>
 
-	<div class="menu-grid">
-		@for (item of menuItems; track item.id) {
+	<div
+		class="menu-grid"
+		libTrackenAnimate="slide-up"
+		[delay]="200"
+	>
+		@for (item of menuItems; track item.id; let i = $index) {
 			<a
 				[routerLink]="item.route"
 				class="menu-card"
+				libTrackenAnimate="fade-in"
+				[delay]="300 + i * 100"
 			>
 				<div class="icon-wrapper">
 					<span class="material-icons">{{ item.icon }}</span>

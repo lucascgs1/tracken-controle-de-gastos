@@ -8,10 +8,16 @@ import {
 	AbstractControl,
 	ValidationErrors,
 } from '@angular/forms';
-import { TrackenPageHeader, TrackenCard, TrackenInput, TrackenButton } from '@tracken/shared';
+import {
+	TrackenPageHeader,
+	TrackenCard,
+	TrackenInput,
+	TrackenButton,
+	TrackenSkeleton,
+	TrackenAnimateDirective,
+} from '@tracken/shared';
 import { AuthFacade } from '@tracken/data-access';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	standalone: true,
@@ -26,6 +32,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 		TrackenCard,
 		TrackenInput,
 		TrackenButton,
+		TrackenSkeleton,
+		TrackenAnimateDirective,
 		TranslocoDirective,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,8 +52,8 @@ export class SecuritySettingsComponent {
 		{ validators: this.passwordMatchValidator },
 	);
 
-	// Reatividade baseada em Signals vinculada ao estado global
-	loading = toSignal(this.authFacade.loading$, { initialValue: false });
+	// Uso direto do Signal da Facade
+	loading = this.authFacade.loading;
 
 	private passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
 		const newPassword = control.get('newPassword')?.value;
@@ -58,9 +66,6 @@ export class SecuritySettingsComponent {
 		if (this.form.valid) {
 			const { newPassword } = this.form.getRawValue();
 			this.authFacade.updatePassword(newPassword);
-
-			// Resetar após sucesso - aqui poderíamos ouvir o sucesso via Actions ou Effect
-			// Por simplicidade na demo, mantemos a ação de salvar
 		}
 	}
 }

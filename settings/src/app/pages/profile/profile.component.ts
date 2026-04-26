@@ -7,11 +7,12 @@ import {
 	TrackenCard,
 	TrackenInput,
 	TrackenButton,
+	TrackenSkeleton,
+	TrackenAnimateDirective,
 	ToastService,
 } from '@tracken/shared';
 import { AuthFacade } from '@tracken/data-access';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	standalone: true,
@@ -25,6 +26,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 		TrackenCard,
 		TrackenInput,
 		TrackenButton,
+		TrackenSkeleton,
+		TrackenAnimateDirective,
 		TranslocoDirective,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +37,14 @@ export class ProfileSettingsComponent {
 	private authFacade = inject(AuthFacade);
 	private toast = inject(ToastService);
 
-	user = toSignal(this.authFacade.user$);
+	// Uso do Signal direto da Facade
+	user = this.authFacade.user;
+	dataLoaded = signal(false);
+
+	constructor() {
+		// Simula carregamento inicial de dados
+		setTimeout(() => this.dataLoaded.set(true), 800);
+	}
 
 	form = this.fb.group({
 		firstName: ['Lucas', [Validators.required]],
