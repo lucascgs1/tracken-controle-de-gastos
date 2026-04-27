@@ -15,8 +15,9 @@ const currentEnv = fs.readFileSync(envPath, 'utf8');
 
 const getEntries = (content) =>
 	content
-		.split('\n')
-		.filter((line) => line && !line.startsWith('#'))
+		.split(/\r?\n/)
+		.map((line) => line.trim())
+		.filter((line) => line && !line.startsWith('#') && line.includes('='))
 		.map((line) => {
 			const [key, ...valueParts] = line.split('=');
 			return { key: key.trim(), value: valueParts.join('=').trim() };

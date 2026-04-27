@@ -23,6 +23,7 @@ export default defineConfig(() => ({
 		coverage: {
 			reportsDirectory: '../../coverage/libs/data-access',
 			provider: 'v8' as const,
+			all: true,
 		},
 	},
 }));

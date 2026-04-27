@@ -13,33 +13,28 @@ import {
 } from '@tracken/data-access';
 import { provideTrackenTransloco } from '@tracken/shared';
 import { of } from 'rxjs';
-import { signal } from '@angular/core';
+import { signal, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
+
+@Component({
+	selector: 'app-add-transaction',
+	standalone: true,
+	template: '',
+})
+class MockAddTransactionComponent {}
 
 describe('DashboardIntegrationComponent', () => {
 	beforeEach(async () => {
 		const authFacadeMock = {
-			user: signal(null),
-			user$: of(null),
+			user: signal({ uid: '1' }),
+			user$: of({ uid: '1' }),
 			loading$: of(false),
 			error$: of(null),
 		};
 
 		const transactionsFacadeMock = {
-			transactions: signal([]),
-			loading: signal(false),
-		};
-
-		const categoriesFacadeMock = {
-			categories: signal([]),
-		};
-
-		const budgetsFacadeMock = {
-			budgets: signal([]),
-		};
-
-		const firebaseServiceMock = {
-			user$: of(null),
+			transactions$: of([]),
+			loading$: of(false),
 		};
 
 		await TestBed.configureTestingModule({
@@ -51,18 +46,18 @@ describe('DashboardIntegrationComponent', () => {
 				provideTrackenTransloco(),
 				{ provide: AuthFacade, useValue: authFacadeMock },
 				{ provide: TransactionsFacade, useValue: transactionsFacadeMock },
-				{ provide: CategoriesFacade, useValue: categoriesFacadeMock },
-				{ provide: BudgetsFacade, useValue: budgetsFacadeMock },
-				{ provide: FirebaseService, useValue: firebaseServiceMock },
+				{ provide: CategoriesFacade, useValue: { allCategories$: of([]) } },
+				{ provide: BudgetsFacade, useValue: { allBudgets$: of([]) } },
+				{ provide: FirebaseService, useValue: { user$: of(null) } },
 				{ provide: 'Auth', useValue: {} },
 				{ provide: 'Firestore', useValue: {} },
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 	});
 
 	it('should create', () => {
 		const fixture = TestBed.createComponent(DashboardIntegrationComponent);
-		const component = fixture.componentInstance;
-		expect(component).toBeTruthy();
+		expect(fixture.componentInstance).toBeTruthy();
 	});
 });

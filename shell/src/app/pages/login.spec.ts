@@ -12,9 +12,10 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 describe('LoginComponent', () => {
 	let component: LoginComponent;
 	let fixture: ComponentFixture<LoginComponent>;
+	let authFacadeMock: any;
 
 	beforeEach(async () => {
-		const authFacadeMock = {
+		authFacadeMock = {
 			user: signal(null),
 			loading$: of(false),
 			error$: of(null),
@@ -47,5 +48,38 @@ describe('LoginComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should have invalid form when empty', () => {
+		expect(component.loginForm.valid).toBe(false);
+	});
+
+	it('should validate email format', () => {
+		const email = component.loginForm.controls.email;
+		email.setValue('invalid-email');
+		expect(email.hasError('email')).toBe(true);
+
+		email.setValue('test@test.com');
+		expect(email.hasError('email')).toBe(false);
+	});
+
+	it('should call login on facade when form is valid', () => {
+		component.loginForm.patchValue({
+			email: 'test@test.com',
+			password: 'password123',
+		});
+
+		component.onSubmit();
+		expect(authFacadeMock.login).toHaveBeenCalledWith('test@test.com', 'password123');
+	});
+
+	it('should not call login on facade when form is invalid', () => {
+		component.loginForm.patchValue({
+			email: 'invalid',
+			password: 'short',
+		});
+
+		component.onSubmit();
+		expect(authFacadeMock.login).not.toHaveBeenCalled();
 	});
 });
