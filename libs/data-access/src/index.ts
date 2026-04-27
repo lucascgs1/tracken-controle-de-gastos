@@ -1,4 +1,4 @@
-import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
+import { EnvironmentProviders, makeEnvironmentProviders, Provider } from '@angular/core';
 import { provideStore, provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { authReducer } from './lib/+state/auth/auth.reducer';
@@ -9,7 +9,13 @@ import { categoriesFeature } from './lib/+state/categories/categories.reducer';
 import { CategoriesEffects } from './lib/+state/categories/categories.effects';
 import { budgetsFeature } from './lib/+state/budgets/budgets.reducer';
 import { BudgetsEffects } from './lib/+state/budgets/budgets.effects';
-import { initializeApp, provideFirebaseApp, getApp, getApps } from '@angular/fire/app';
+import {
+	FirebaseOptions,
+	initializeApp,
+	provideFirebaseApp,
+	getApp,
+	getApps,
+} from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
@@ -37,10 +43,10 @@ export interface DataAccessOptions {
  * unless running in standalone mode.
  */
 export function provideDataAccess(
-	firebaseConfig: any,
+	firebaseConfig: FirebaseOptions,
 	options: DataAccessOptions = {},
 ): EnvironmentProviders {
-	const providers: any[] = [];
+	const providers: (Provider | EnvironmentProviders)[] = [];
 
 	if (!options.isRemote) {
 		providers.push(

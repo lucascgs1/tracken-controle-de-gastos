@@ -10,7 +10,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ProfileSettingsComponent', () => {
 	let component: ProfileSettingsComponent;
-	let authFacadeMock: { user: any };
+	let authFacadeMock: { user: import('@angular/core').Signal<unknown> };
 	let toastServiceMock: { show: Mock };
 
 	beforeEach(async () => {

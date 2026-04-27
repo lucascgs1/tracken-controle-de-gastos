@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SeedService } from '../../services/seed.service';
 import { BudgetsActions } from './budgets.actions';
 import { catchError, map, switchMap, of, take } from 'rxjs';
+import { Budget } from '../../models';
 
 @Injectable()
 export class BudgetsEffects {
@@ -18,7 +19,7 @@ export class BudgetsEffects {
 					take(1),
 					map((data) =>
 						BudgetsActions.loadBudgetsSuccess({
-							budgets: data.budgets as any,
+							budgets: data.budgets as Budget[],
 						}),
 					),
 					catchError((error) => of(BudgetsActions.loadBudgetsFailure({ error: error.message }))),

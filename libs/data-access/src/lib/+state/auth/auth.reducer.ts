@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthActions } from './auth.actions';
+import { AuthActions, AuthUser } from './auth.actions';
 
 export interface AuthState {
-	user: any | null;
+	user: AuthUser | null;
 	loading: boolean;
 	error: string | null;
 }

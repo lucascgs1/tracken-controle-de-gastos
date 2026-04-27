@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SeedService } from '../../services/seed.service';
 import { CategoriesActions } from './categories.actions';
 import { catchError, map, switchMap, of, take } from 'rxjs';
+import { Category } from '../../models';
 
 @Injectable()
 export class CategoriesEffects {
@@ -18,7 +19,7 @@ export class CategoriesEffects {
 					take(1),
 					map((data) =>
 						CategoriesActions.loadCategoriesSuccess({
-							categories: data.categories as any,
+							categories: data.categories as Category[],
 						}),
 					),
 					catchError((error) =>

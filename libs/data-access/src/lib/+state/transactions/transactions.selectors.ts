@@ -3,7 +3,7 @@ import { TransactionsState, transactionsAdapter } from './transactions.reducer';
 
 export const selectTransactionsState = createFeatureSelector<TransactionsState>('transactions');
 
-const { selectAll, selectEntities } = transactionsAdapter.getSelectors();
+const { selectAll } = transactionsAdapter.getSelectors();
 
 export const selectAllTransactions = createSelector(selectTransactionsState, selectAll);
 

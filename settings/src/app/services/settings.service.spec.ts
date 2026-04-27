@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 
 describe('SettingsService', () => {
 	let service: SettingsService;
-	let routerEvents: Subject<any>;
-	let routerMock: { events: Subject<any>; url: string };
+	let routerEvents: Subject<import('@angular/router').Event>;
+	let routerMock: { events: Subject<import('@angular/router').Event>; url: string };
 
 	beforeEach(() => {
 		routerEvents = new Subject();

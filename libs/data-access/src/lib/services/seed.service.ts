@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { FirebaseService } from './firebase.service';
-import { firstValueFrom, of } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',

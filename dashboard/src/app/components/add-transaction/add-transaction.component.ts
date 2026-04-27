@@ -10,7 +10,6 @@ import {
 	TrackenMoneyInput,
 	SelectOption,
 	TrackenSegmentedControl,
-	SegmentOption,
 } from '@tracken/shared';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoDirective } from '@jsverse/transloco';

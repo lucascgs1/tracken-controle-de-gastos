@@ -1,5 +1,4 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { User } from '@angular/fire/auth';
 
 export interface AuthUser {
 	uid: string;

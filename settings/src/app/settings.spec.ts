@@ -3,14 +3,14 @@ import { SettingsComponent } from './settings';
 import { SettingsService } from './services/settings.service';
 import { provideTrackenTransloco } from '@tracken/shared';
 import { RouterTestingModule } from '@angular/router/testing';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { signal } from '@angular/core';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { signal, WritableSignal } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('SettingsComponent', () => {
 	let component: SettingsComponent;
-	let settingsServiceMock: { isHome: any; menuItems: any[] };
+	let settingsServiceMock: { isHome: WritableSignal<boolean>; menuItems: unknown[] };
 
 	beforeEach(async () => {
 		settingsServiceMock = {
