@@ -6,7 +6,6 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	inject,
-	HostListener,
 	computed,
 	ElementRef,
 } from '@angular/core';

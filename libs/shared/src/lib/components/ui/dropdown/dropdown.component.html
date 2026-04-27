@@ -1,7 +1,11 @@
 <div class="dropdown-container">
 	<div
 		class="dropdown-trigger"
+		role="button"
+		tabindex="0"
 		(click)="toggle()"
+		(keydown.enter)="toggle()"
+		(keydown.space)="toggle(); $event.preventDefault()"
 	>
 		<ng-content select="[trigger]"></ng-content>
 	</div>
@@ -9,9 +13,17 @@
 	@if (isOpen()) {
 		<div
 			class="dropdown-menu-overlay"
+			role="presentation"
 			(click)="close()"
+			(keydown.escape)="close()"
 		>
-			<div class="dropdown-menu premium-card">
+			<div
+				class="dropdown-menu premium-card"
+				role="menu"
+				tabindex="-1"
+				(click)="$event.stopPropagation()"
+				(keydown)="$event.stopPropagation()"
+			>
 				<ng-content select="[menu]"></ng-content>
 			</div>
 		</div>

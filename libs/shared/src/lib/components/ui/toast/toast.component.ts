@@ -12,13 +12,24 @@ import { ToastService } from '../../../services/toast.service';
 				<div
 					class="toast"
 					[class]="toast.type"
+					role="alert"
+					tabindex="0"
 					(click)="toastService.remove(toast.id)"
+					(keydown.enter)="toastService.remove(toast.id)"
 				>
-					<span class="material-icons">
+					<span
+						class="material-icons"
+						aria-hidden="true"
+					>
 						{{ getIcon(toast.type) }}
 					</span>
 					<span class="message">{{ toast.message }}</span>
-					<button class="close-btn">&times;</button>
+					<button
+						class="close-btn"
+						aria-label="Close"
+					>
+						&times;
+					</button>
 				</div>
 			}
 		</div>

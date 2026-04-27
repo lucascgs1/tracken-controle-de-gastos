@@ -13,7 +13,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 export interface SegmentOption {
 	label: string;
-	value: any;
+	value: string | number | boolean;
 }
 
 @Component({
@@ -34,7 +34,7 @@ export interface SegmentOption {
 export class TrackenSegmentedControl implements ControlValueAccessor {
 	options = input.required<SegmentOption[]>();
 
-	value = signal<any>(null);
+	value = signal<string | number | boolean | null>(null);
 	disabled = signal(false);
 
 	selectedIndex = computed(() => {
@@ -42,7 +42,7 @@ export class TrackenSegmentedControl implements ControlValueAccessor {
 		return this.options().findIndex((opt) => opt.value === currentVal);
 	});
 
-	private onChange: (value: any) => void = () => {
+	private onChange: (value: string | number | boolean | null) => void = () => {
 		// noop
 	};
 	private onTouched: () => void = () => {
@@ -50,7 +50,7 @@ export class TrackenSegmentedControl implements ControlValueAccessor {
 	};
 	private cdr = inject(ChangeDetectorRef);
 
-	select(val: any) {
+	select(val: string | number | boolean) {
 		if (!this.disabled()) {
 			this.value.set(val);
 			this.onChange(val);
@@ -58,12 +58,12 @@ export class TrackenSegmentedControl implements ControlValueAccessor {
 		}
 	}
 
-	writeValue(value: any): void {
+	writeValue(value: string | number | boolean | null): void {
 		this.value.set(value);
 		this.cdr.markForCheck();
 	}
 
-	registerOnChange(fn: (value: any) => void): void {
+	registerOnChange(fn: (value: string | number | boolean | null) => void): void {
 		this.onChange = fn;
 	}
 
