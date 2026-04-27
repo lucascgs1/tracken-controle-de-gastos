@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Generate Environment Files
+        run: |
+          cp .env.example .env
+          node scripts/generate-env.js
+
       - name: Lint and Test
         run: |
           pnpm nx run-many -t lint
